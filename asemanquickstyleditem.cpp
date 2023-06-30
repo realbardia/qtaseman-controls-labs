@@ -26,36 +26,8 @@ void AsemanQuickStyledItem::setStyleComponent(QQmlComponent *newStyleComponent)
     if (mStyleComponent == newStyleComponent)
         return;
 
-    if (mStyleItem)
-    {
-        delete mStyleItem;
-        mStyleItem = nullptr;
-    }
-
     mStyleComponent = newStyleComponent;
-    if (mStyleComponent && mStyleComponent->isReady())
-    {
-        auto context = qmlContext(this);
-        auto newContext = new QQmlContext(context, this);
-        newContext->setContextProperty("control", this);
-
-        QVariantMap properties = {
-            {"parent", QVariant::fromValue<QObject*>(this)}
-        };
-
-        auto obj = mStyleComponent->createWithInitialProperties(properties, newContext);
-        mStyleItem = qobject_cast<typeof(mStyleItem)>(obj);
-        if (mStyleItem)
-        {
-            connect(mStyleItem, &QQuickItem::implicitWidthChanged, this, &AsemanQuickStyledItem::reinitImplicitSizes);
-            connect(mStyleItem, &QQuickItem::implicitHeightChanged, this, &AsemanQuickStyledItem::reinitImplicitSizes);
-            reinitImplicitSizes();
-        }
-        else
-            delete obj;
-    }
-
-    Q_EMIT styleItemChanged();
+    setupStyleItem();
     Q_EMIT styleComponentChanged();
 }
 
@@ -77,6 +49,55 @@ void AsemanQuickStyledItem::reinitImplicitSizes()
         setImplicitWidth(mStyleItem->implicitWidth());
         setImplicitHeight(mStyleItem->implicitHeight());
     }
+}
+
+void AsemanQuickStyledItem::setupStyleItem()
+{
+    if (mStyleItem)
+    {
+        delete mStyleItem;
+        mStyleItem = nullptr;
+    }
+
+    if (!mSourceItem)
+        return;
+    if (!mStyleComponent || !mStyleComponent->isReady())
+        return;
+
+    auto context = qmlContext(this);
+    auto newContext = new QQmlContext(context, this);
+    newContext->setContextProperty("control", mSourceItem);
+
+    QVariantMap properties = {
+        {"parent", QVariant::fromValue<QObject*>(this)}
+    };
+
+    auto obj = mStyleComponent->createWithInitialProperties(properties, newContext);
+    mStyleItem = qobject_cast<typeof(mStyleItem)>(obj);
+    if (mStyleItem)
+    {
+        connect(mStyleItem, &QQuickItem::implicitWidthChanged, this, &AsemanQuickStyledItem::reinitImplicitSizes);
+        connect(mStyleItem, &QQuickItem::implicitHeightChanged, this, &AsemanQuickStyledItem::reinitImplicitSizes);
+        reinitImplicitSizes();
+    }
+    else
+        delete obj;
+
+    Q_EMIT styleItemChanged();
+}
+
+QQuickItem *AsemanQuickStyledItem::sourceItem() const
+{
+    return mSourceItem;
+}
+
+void AsemanQuickStyledItem::setSourceItem(QQuickItem *newSourceItem)
+{
+    if (mSourceItem == newSourceItem)
+        return;
+    mSourceItem = newSourceItem;
+    setupStyleItem();
+    Q_EMIT sourceItemChanged();
 }
 
 AsemanQuickAbstractStyle *AsemanQuickStyledItem::styleItem() const
@@ -101,7 +122,7 @@ void AsemanQuickStyledItem::setStylePath(const QUrl &newStylePath)
         {
             auto component = new QQmlComponent(engine, mStylePath, this);
             if (component->isError())
-                qmlWarning(this) << component->errorString();
+                qDebug() << component->errorString().toStdString().c_str();
             else
                 setStyleComponent(component);
         }

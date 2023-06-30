@@ -1,12 +1,13 @@
 import QtQuick 2.0
 import AsemanQml.Test.Controls 3.0
+import AsemanQml.MaterialIcons 2.0
 import AsemanQml.GraphicalEffects 2.0
 import "../.." as Root
 
 AbstractStyle {
     id: dis
-    implicitHeight: 44
-    implicitWidth: contentRow.width + 40
+    implicitHeight: contentRow.height + 14
+    implicitWidth: contentRow.width + 14
 
     Connections {
         target: control
@@ -42,15 +43,9 @@ AbstractStyle {
     Rectangle {
         id: background
         anchors.fill: parent
-        color: control.flat? "transparent" : control.highlighted? control.Style.highlightColor : "transparent"
-        radius: control.radius
-
-        Rectangle {
-            anchors.fill: parent
-            opacity: (!control.flat && !control.highlighted? 0.2 : 0) + (control.pressed || control.focusedInUsingKeyboard? 0.1 : 0)
-            color: control.Style.foregroundColor
-            radius: control.radius
-        }
+        radius: 6
+        color: control.Style.foregroundColor
+        opacity: control.focusedInUsingKeyboard? 0.1 : 0
     }
 
     Item {
@@ -81,7 +76,7 @@ AbstractStyle {
     Row {
         id: contentRow
         anchors.centerIn: parent
-        spacing: 4
+        spacing: 10
         scale: {
             if (!control.pressed)
                 return 1;
@@ -95,16 +90,44 @@ AbstractStyle {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
         }
 
-        Root.Icon {
-            color: mainText.color
-            font.pixelSize: control.iconPixelSize
-            text: control.icon
-            visible: text.length
+        Item {
+            anchors.verticalCenter: parent.verticalCenter
+            width: 22
+            height: width
+
+            Rectangle {
+                anchors.fill: parent
+                radius: 6
+                color:  control.checked? control.Style.highlightColor : control.Style.foregroundColor
+                opacity: control.checked? 1 : 0.3
+
+                Behavior on color {
+                    ColorAnimation { easing.type: Easing.OutCubic; duration: 200 }
+                }
+                Behavior on opacity {
+                    NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
+                }
+            }
+
+            Root.Icon {
+                anchors.centerIn: parent
+                text: MaterialIcons.mdi_check
+                color: "#fff"
+                opacity: control.checked? 1 : 0
+                scale: control.checked? 1 : 2
+
+                Behavior on opacity {
+                    NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
+                }
+                Behavior on scale {
+                    NumberAnimation { easing.type: Easing.OutBack; duration: 200 }
+                }
+            }
         }
 
         Root.Label {
-            id: mainText
-            color: control.highlighted? control.Style.highlightTextColor : control.Style.foregroundColor
+            anchors.verticalCenter: parent.verticalCenter
+            color: control.Style.foregroundColor
             text: control.text
             visible: text.length
         }

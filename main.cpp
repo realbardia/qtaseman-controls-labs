@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<AsemanQuickSceneItem>("AsemanQml.Test.Controls.Core", 3, 0, "Scene");
     qmlRegisterType<AsemanQuickControlItem>("AsemanQml.Test.Controls.Core", 3, 0, "Control");
+    qmlRegisterType<AsemanQuickStyledItem>("AsemanQml.Test.Controls.Core", 3, 0, "StyledItem");
     qmlRegisterType<AsemanQuickAbstractStyle>("AsemanQml.Test.Controls", 3, 0, "AbstractStyle");
     qmlRegisterUncreatableType<AsemanQuickStyleProperty>("AsemanQml.Test.Controls", 3, 0, "Style", "");
     qmlRegisterUncreatableType<AsemanQuickBoxSize>("AsemanQml.Test.Controls", 3, 0, "BoxSize", "");

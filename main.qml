@@ -30,13 +30,21 @@ Window {
             opacity: 0.5
         }
 
-        Button {
-            id: btn
+        Column {
             anchors.centerIn: parent
-            highlighted: true
-            icon: MaterialIcons.mdi_dialpad
-            text: "Test"
-            onClicked: win.Style.highlightColor = "#0d80ec"
+
+            CheckBox {
+                id: check
+                text: "Test check"
+            }
+
+            Button {
+                id: btn
+                highlighted: true
+                icon: MaterialIcons.mdi_dialpad
+                text: "Test"
+                onClicked: win.Style.highlightColor = "#0d80ec"
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ AsemanQuickSceneItem::AsemanQuickSceneItem(QQuickItem *parent)
     setAcceptHoverEvents(true);
     setAcceptTouchEvents(true);
     setAcceptedMouseButtons(Qt::AllButtons);
+    setSourceItem(this);
 }
 
 AsemanQuickSceneItem::~AsemanQuickSceneItem()
@@ -14,7 +15,7 @@ AsemanQuickSceneItem::~AsemanQuickSceneItem()
 
 QList<AsemanQuickControlItem *> AsemanQuickSceneItem::controls() const
 {
-    return AsemanQuickControlItem::findAllControls(this, true);
+    return AsemanQuickControlItem::findAllControls(this, true, false);
 }
 
 AsemanQuickSceneItem *AsemanQuickSceneItem::findScene(const QQuickItem *item)

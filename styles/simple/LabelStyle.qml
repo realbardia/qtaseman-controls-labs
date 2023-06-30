@@ -3,13 +3,10 @@ import AsemanQml.Test.Controls 3.0
 
 AbstractStyle {
     id: dis
-    implicitHeight: textArea.height
-    implicitWidth: textArea.width
-
-    Text {
-        id: textArea
-        color: control.color
-        text: control.text
-        font: control.font
+    implicitHeight: control.height
+    implicitWidth: control.width
+    extra: {
+        "lineHeight": 1,
+        "lineHeightMode": Text.ProportionalHeight,
     }
 }

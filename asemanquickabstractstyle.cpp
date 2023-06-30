@@ -36,3 +36,16 @@ void AsemanQuickAbstractStyle::setFont(const QFont &newFont)
     mFont = newFont;
     Q_EMIT fontChanged();
 }
+
+QVariantMap AsemanQuickAbstractStyle::extra() const
+{
+    return mExtra;
+}
+
+void AsemanQuickAbstractStyle::setExtra(const QVariantMap &newExtra)
+{
+    if (mExtra == newExtra)
+        return;
+    mExtra = newExtra;
+    Q_EMIT extraChanged();
+}

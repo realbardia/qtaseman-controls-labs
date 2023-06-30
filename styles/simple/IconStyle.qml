@@ -4,14 +4,11 @@ import AsemanQml.MaterialIcons 2.0
 
 AbstractStyle {
     id: dis
-    implicitHeight: textArea.height
-    implicitWidth: textArea.width
-
-    Text {
-        id: textArea
-        color: control.color
-        text: control.text
-        font.pixelSize: control.pixelSize
-        font.family: MaterialIcons.family
+    implicitHeight: control.height
+    implicitWidth: control.width
+    font.family: MaterialIcons.family
+    extra: {
+        "lineHeight": 1,
+        "lineHeightMode": Text.ProportionalHeight,
     }
 }

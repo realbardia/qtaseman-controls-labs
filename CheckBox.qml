@@ -3,17 +3,10 @@ import AsemanQml.Test.Controls.Core 3.0
 
 Control {
     id: dis
-    stylePath: "styles/simple/ButtonStyle.qml"
+    stylePath: "styles/simple/CheckBoxStyle.qml"
 
     property string text
-    property string icon
-
-    property real iconPixelSize: 14
-
-    property bool highlighted
-    property bool flat
-
-    property real radius: 8
+    property bool checked
 
     property alias pressedX: marea.mouseX
     property alias pressedY: marea.mouseY
@@ -21,9 +14,16 @@ Control {
     property alias hovered: marea.containsMouse
 
     signal clicked()
+    signal toggled()
 
-    Keys.onReturnPressed: dis.clicked()
-    Keys.onEnterPressed: dis.clicked()
+    Keys.onSpacePressed: toggle()
+    Keys.onReturnPressed: toggle()
+    Keys.onEnterPressed: toggle()
+
+    function toggle() {
+        dis.checked = !dis.checked;
+        toggled();
+    }
 
     MouseArea {
         id: marea
@@ -33,6 +33,9 @@ Control {
             dis.focus = true;
             dis.forceActiveFocus();
         }
-        onClicked: dis.clicked()
+        onClicked: {
+            toggle();
+            dis.clicked();
+        }
     }
 }

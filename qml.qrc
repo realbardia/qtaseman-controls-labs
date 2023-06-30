@@ -15,5 +15,7 @@
         <file>styles/simple/HeaderStyle.qml</file>
         <file>styles/simple/FooterStyle.qml</file>
         <file>Footer.qml</file>
+        <file>CheckBox.qml</file>
+        <file>styles/simple/CheckBoxStyle.qml</file>
     </qresource>
 </RCC>
