@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<AsemanQuickControlItem>("AsemanQml.Test.Controls.Core", 3, 0, "Control");
     qmlRegisterType<AsemanQuickAbstractStyle>("AsemanQml.Test.Controls", 3, 0, "AbstractStyle");
     qmlRegisterUncreatableType<AsemanQuickStyleProperty>("AsemanQml.Test.Controls", 3, 0, "Style", "");
+    qmlRegisterUncreatableType<AsemanQuickBoxSize>("AsemanQml.Test.Controls", 3, 0, "BoxSize", "");
     qmlRegisterSingletonInstance<AsemanQuickMainPalette>("AsemanQml.Test.Controls.Core", 3, 0, "MainPalette", new AsemanQuickMainPalette);
 
     QQmlApplicationEngine engine;

@@ -6,7 +6,6 @@ Scene {
     id: dis
     data: {
         var res = new Array;
-        res[res.length] = background;
         if (header) res[res.length] = header;
         if (footer) res[res.length] = footer;
         return res;
@@ -22,6 +21,7 @@ Scene {
     property Item header
     property Item footer
 
+    property alias scene: scene
     default property alias items: scene.data
 
     onHeaderChanged: {
@@ -30,6 +30,7 @@ Scene {
             header.anchors.left = left;
             header.anchors.right = right;
             header.anchors.top = top;
+            header.z = 10;
         }
     }
     onFooterChanged: {
@@ -38,14 +39,16 @@ Scene {
             footer.anchors.left = left;
             footer.anchors.right = right;
             footer.anchors.bottom = bottom;
+            footer.z = 10;
         }
     }
 
     Item {
         id: scene
-        anchors.top: dis.header? dis.header.bottom : parent.top
-        anchors.bottom: dis.footer? dis.footer.top : parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.fill: parent
+        anchors.topMargin: dis.styleItem.padding.top
+        anchors.bottomMargin: dis.styleItem.padding.bottom
+        anchors.leftMargin: dis.styleItem.padding.left
+        anchors.rightMargin: dis.styleItem.padding.right
     }
 }

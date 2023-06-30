@@ -9,6 +9,7 @@ CONFIG += c++11
 SOURCES += \
         asemanquickabstractbutton.cpp \
         asemanquickabstractstyle.cpp \
+        asemanquickboxsize.cpp \
         asemanquickcontrolitem.cpp \
         asemanquickmainpalette.cpp \
         asemanquicksceneitem.cpp \
@@ -32,6 +33,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     asemanquickabstractbutton.h \
     asemanquickabstractstyle.h \
+    asemanquickboxsize.h \
     asemanquickcontrolitem.h \
     asemanquickmainpalette.h \
     asemanquicksceneitem.h \

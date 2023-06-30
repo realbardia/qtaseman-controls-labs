@@ -19,6 +19,17 @@ Window {
         anchors.fill: parent
         title: "Test"
 
+        header: Header {
+            height: 50
+            width: parent.width
+            opacity: 0.5
+        }
+        footer: Footer {
+            height: 50
+            width: parent.width
+            opacity: 0.5
+        }
+
         Button {
             id: btn
             anchors.centerIn: parent

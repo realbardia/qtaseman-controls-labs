@@ -6,6 +6,8 @@
 AsemanQuickStyledItem::AsemanQuickStyledItem(QQuickItem *parent)
     : QQuickItem(parent)
 {
+    mStyleItem = new AsemanQuickAbstractStyle(this);
+
     connect(this, &AsemanQuickStyledItem::widthChanged, this, &AsemanQuickStyledItem::reposItems);
     connect(this, &AsemanQuickStyledItem::heightChanged, this, &AsemanQuickStyledItem::reposItems);
 }
@@ -53,6 +55,7 @@ void AsemanQuickStyledItem::setStyleComponent(QQmlComponent *newStyleComponent)
             delete obj;
     }
 
+    Q_EMIT styleItemChanged();
     Q_EMIT styleComponentChanged();
 }
 
@@ -74,6 +77,11 @@ void AsemanQuickStyledItem::reinitImplicitSizes()
         setImplicitWidth(mStyleItem->implicitWidth());
         setImplicitHeight(mStyleItem->implicitHeight());
     }
+}
+
+AsemanQuickAbstractStyle *AsemanQuickStyledItem::styleItem() const
+{
+    return mStyleItem;
 }
 
 QUrl AsemanQuickStyledItem::stylePath() const

@@ -2,18 +2,18 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Page.qml</file>
-        <file>templates/Page.qml</file>
-        <file>templates/Label.qml</file>
-        <file>templates/Palette.qml</file>
         <file>Palette.qml</file>
         <file>qmldir</file>
         <file>Label.qml</file>
         <file>Button.qml</file>
-        <file>templates/Icon.qml</file>
         <file>Icon.qml</file>
         <file>styles/simple/ButtonStyle.qml</file>
         <file>styles/simple/LabelStyle.qml</file>
         <file>styles/simple/PageStyle.qml</file>
         <file>styles/simple/IconStyle.qml</file>
+        <file>Header.qml</file>
+        <file>styles/simple/HeaderStyle.qml</file>
+        <file>styles/simple/FooterStyle.qml</file>
+        <file>Footer.qml</file>
     </qresource>
 </RCC>

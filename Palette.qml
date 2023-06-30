@@ -1,7 +1,11 @@
 pragma Singleton
 
 import QtQuick 2.0
-import "templates" as T
+import AsemanQml.Test.Controls.Core 3.0
 
-T.Palette {
+QtObject {
+    property color foreground: MainPalette.foreground
+    property color background: MainPalette.background
+    property color highlight: MainPalette.highlight
+    property color highlightText: MainPalette.highlightText
 }

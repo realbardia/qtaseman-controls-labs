@@ -5,7 +5,7 @@ import "../.." as Root
 AbstractStyle {
     id: dis
     implicitHeight: 44
-    implicitWidth: 200
+    implicitWidth: contentRow.width + 40
 
     Rectangle {
         anchors.fill: parent
@@ -21,6 +21,7 @@ AbstractStyle {
     }
 
     Row {
+        id: contentRow
         anchors.centerIn: parent
         spacing: 4
 
