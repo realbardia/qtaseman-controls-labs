@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import AsemanQml.Test.Controls 3.0
+import "../.." as Root
 
 AbstractStyle {
     id: dis
@@ -7,6 +8,13 @@ AbstractStyle {
     Rectangle {
         anchors.fill: parent
         color: control.Style.primaryColor
+
+        Root.Label {
+            anchors.centerIn: parent
+            font.bold: true
+            text: control.title
+            color: control.Style.primaryTextColor
+        }
     }
 
     Rectangle {

@@ -20,6 +20,7 @@ Control {
 
     Keys.onReturnPressed: dis.clicked()
     Keys.onEnterPressed: dis.clicked()
+    Keys.onSpacePressed: dis.clicked()
 
     MouseArea {
         id: marea

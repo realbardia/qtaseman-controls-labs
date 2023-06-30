@@ -29,5 +29,9 @@
         <file>styles/simple/TextFieldStyle.qml</file>
         <file>TextArea.qml</file>
         <file>styles/simple/TextAreaStyle.qml</file>
+        <file>ProgressBar.qml</file>
+        <file>styles/simple/ProgressBarStyle.qml</file>
+        <file>Slider.qml</file>
+        <file>styles/simple/SliderStyle.qml</file>
     </qresource>
 </RCC>

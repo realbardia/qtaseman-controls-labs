@@ -5,20 +5,18 @@ import AsemanQml.MaterialIcons 2.0
 
 Window {
     id: win
-    width: 640
-    height: 480
+    width: 480
+    height: 640
     visible: true
     title: qsTr("Hello World")
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: console.debug(":)")
-    }
 
     Page {
         id: page
         anchors.fill: parent
-        title: "Test"
+        title: "Home"
+
+        Style.primaryColor: "#3f51b5"
+        Style.primaryTextColor: "#fff"
 
         header: Header {
             height: 50
@@ -69,6 +67,16 @@ Window {
             TextArea {
                 width: 200
                 placeholderText: "It's Area 2"
+            }
+
+            ProgressBar {
+                value: 30
+                width: 200
+            }
+
+            Slider {
+                value: 30
+                width: 200
             }
         }
     }

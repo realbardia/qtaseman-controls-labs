@@ -47,7 +47,7 @@ AbstractStyle {
 
         Rectangle {
             anchors.fill: parent
-            opacity: (!control.flat && !control.highlighted? 0.2 : 0) + (control.pressed || control.focusedInUsingKeyboard? 0.1 : 0)
+            opacity: (!control.flat && !control.highlighted? 0.2 : 0) + (control.pressed || control.focusedInUsingKeyboard || control.hovered? 0.1 : 0)
             color: control.Style.foregroundColor
             radius: control.radius
         }

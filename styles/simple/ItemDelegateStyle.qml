@@ -62,7 +62,7 @@ AbstractStyle {
         anchors.fill: parent
         radius: control.radius
         color: control.Style.foregroundColor
-        opacity: control.focusedInUsingKeyboard? 0.1 : 0
+        opacity: control.focusedInUsingKeyboard || control.hovered? 0.1 : 0
     }
 
     Item {

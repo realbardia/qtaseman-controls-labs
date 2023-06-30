@@ -9,6 +9,8 @@ Control {
     property alias scene: scene
     default property alias items: scene.data
 
+    property string title: parent && parent.title != undefined? parent.title : ""
+
     Item {
         id: scene
         anchors.fill: parent
