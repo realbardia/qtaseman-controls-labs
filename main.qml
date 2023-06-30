@@ -23,12 +23,10 @@ Window {
         header: Header {
             height: 50
             width: parent.width
-            opacity: 0.5
         }
         footer: Footer {
             height: 50
             width: parent.width
-            opacity: 0.5
         }
 
         Column {

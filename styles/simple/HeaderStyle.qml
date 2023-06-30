@@ -6,7 +6,7 @@ AbstractStyle {
 
     Rectangle {
         anchors.fill: parent
-        color: control.Style.backgroundColor
+        color: control.Style.primaryColor
     }
 
     Rectangle {

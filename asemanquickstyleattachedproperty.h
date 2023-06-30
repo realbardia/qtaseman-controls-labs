@@ -18,6 +18,8 @@ class AsemanQuickStyleAttachedProperty : public QObject
     Q_PROPERTY(QColor backgroundColor READ backgroundColor WRITE setBackgroundColor NOTIFY backgroundColorChanged)
     Q_PROPERTY(QColor primaryColor READ primaryColor WRITE setPrimaryColor NOTIFY primaryColorChanged)
     Q_PROPERTY(QColor primaryTextColor READ primaryTextColor WRITE setPrimaryTextColor NOTIFY primaryTextColorChanged)
+    Q_PROPERTY(QColor baseColor READ baseColor WRITE setBaseColor NOTIFY baseColorChanged)
+    Q_PROPERTY(QColor baseTextColor READ baseTextColor WRITE setBaseTextColor NOTIFY baseTextColorChanged)
 
 public:
     AsemanQuickStyleAttachedProperty(QObject *parent = nullptr);
@@ -44,6 +46,12 @@ public:
     QColor primaryTextColor() const;
     void setPrimaryTextColor(const QColor &newPrimaryTextColor);
 
+    QColor baseColor() const;
+    void setBaseColor(const QColor &newBaseColor);
+
+    QColor baseTextColor() const;
+    void setBaseTextColor(const QColor &newBaseTextColor);
+
 Q_SIGNALS:
     void generalFontFamiliesChanged();
     void accentColorChanged();
@@ -52,6 +60,9 @@ Q_SIGNALS:
     void backgroundColorChanged();
     void primaryColorChanged();
     void primaryTextColorChanged();
+    void baseColorChanged();
+
+    void baseTextColorChanged();
 
 private:
     std::optional<QStringList> mGeneralFontFamilies;
@@ -61,6 +72,8 @@ private:
     std::optional<QColor> mAccentTextColor;
     std::optional<QColor> mForegroundColor;
     std::optional<QColor> mBackgroundColor;
+    std::optional<QColor> mBaseColor;
+    std::optional<QColor> mBaseTextColor;
 };
 
 class AsemanQuickStyleProperty : public QObject

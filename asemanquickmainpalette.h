@@ -12,6 +12,8 @@ class AsemanQuickMainPalette : public QObject
     Q_PROPERTY(QColor highlightText MEMBER mHighlightText NOTIFY themeChanged)
     Q_PROPERTY(QColor foreground MEMBER mForeground NOTIFY themeChanged)
     Q_PROPERTY(QColor background MEMBER mBackground NOTIFY themeChanged)
+    Q_PROPERTY(QColor base MEMBER mBase NOTIFY themeChanged)
+    Q_PROPERTY(QColor baseText MEMBER mBaseText NOTIFY themeChanged)
 
 public:
     enum Theme {
@@ -37,6 +39,8 @@ private:
     QColor mBackground;
     QColor mHighlight;
     QColor mHighlightText;
+    QColor mBase;
+    QColor mBaseText;
 };
 
 #endif // ASEMANQUICKMAINPALETTE_H

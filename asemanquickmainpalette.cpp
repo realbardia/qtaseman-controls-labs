@@ -11,6 +11,8 @@ AsemanQuickMainPalette::AsemanQuickMainPalette(QObject *parent)
     mForeground = palette.windowText().color();
     mHighlight = palette.highlight().color();
     mHighlightText = palette.highlightedText().color();
+    mBase = palette.base().color();
+    mBaseText = palette.text().color();
 }
 
 AsemanQuickMainPalette::~AsemanQuickMainPalette()

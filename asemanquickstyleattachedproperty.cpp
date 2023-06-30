@@ -35,7 +35,34 @@
 AsemanQuickStyleAttachedProperty::AsemanQuickStyleAttachedProperty(QObject *parent)
     : QObject(parent)
 {
+    auto item = qobject_cast<QQuickItem*>(parent);
+    if (item)
+    {
+        connect(item, &QQuickItem::parentChanged, this, [this, item](){
+            std::function<void(QObject *obj)> callback;
+            callback = [&callback](QObject *obj) {
+                for (auto c: obj->children()) {
+                    auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(c, false));
+                    if (!attached) {
+                        callback(c);
+                        continue;
+                    }
 
+                    Q_EMIT attached->primaryColorChanged();
+                    Q_EMIT attached->primaryTextColorChanged();
+                    Q_EMIT attached->accentColorChanged();
+                    Q_EMIT attached->accentTextColorChanged();
+                    Q_EMIT attached->foregroundColorChanged();
+                    Q_EMIT attached->backgroundColorChanged();
+                    Q_EMIT attached->baseColorChanged();
+                    Q_EMIT attached->baseTextColorChanged();
+                    Q_EMIT attached->generalFontFamiliesChanged();
+                }
+            };
+            callback(item);
+            Q_EMIT primaryColorChanged();
+        });
+    }
 }
 
 AsemanQuickStyleAttachedProperty::~AsemanQuickStyleAttachedProperty()
@@ -147,6 +174,36 @@ void AsemanQuickStyleAttachedProperty::setPrimaryTextColor(const QColor &newPrim
     mPrimaryTextColor = newPrimaryTextColor;
     ASEMAN_WRITE_STYLE(mPrimaryTextColor, primaryTextColorChanged);
     Q_EMIT primaryTextColorChanged();
+}
+
+QColor AsemanQuickStyleAttachedProperty::baseColor() const
+{
+    ASEMAN_READ_STYLE(mBaseColor);
+    return res.value_or(QColor());
+}
+
+void AsemanQuickStyleAttachedProperty::setBaseColor(const QColor &newBaseColor)
+{
+    if (mBaseColor == newBaseColor)
+        return;
+    mBaseColor = newBaseColor;
+    ASEMAN_WRITE_STYLE(mBaseColor, baseColorChanged);
+    Q_EMIT baseColorChanged();
+}
+
+QColor AsemanQuickStyleAttachedProperty::baseTextColor() const
+{
+    ASEMAN_READ_STYLE(mBaseTextColor);
+    return res.value_or(QColor());
+}
+
+void AsemanQuickStyleAttachedProperty::setBaseTextColor(const QColor &newBaseTextColor)
+{
+    if (mBaseTextColor == newBaseTextColor)
+        return;
+    mBaseTextColor = newBaseTextColor;
+    ASEMAN_WRITE_STYLE(mBaseTextColor, baseTextColorChanged);
+    Q_EMIT baseTextColorChanged();
 }
 
 AsemanQuickStyleAttachedProperty *AsemanQuickStyleProperty::qmlAttachedProperties(QObject *object)
