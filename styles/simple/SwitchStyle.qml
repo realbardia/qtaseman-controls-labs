@@ -94,13 +94,15 @@ AbstractStyle {
         }
 
         Item {
-            anchors.verticalCenter: parent.verticalCenter
-            width: 22
-            height: width
+            width: 36
+            height: 22
 
             Rectangle {
-                anchors.fill: parent
-                radius: 6
+                id: bilbil
+                anchors.verticalCenter: parent.verticalCenter
+                width: parent.width
+                height: parent.height
+                radius: height/2
                 color:  control.checked? control.Style.highlightColor : control.Style.foregroundColor
                 opacity: control.checked? 1 : 0.3
 
@@ -112,18 +114,20 @@ AbstractStyle {
                 }
             }
 
-            Root.Icon {
-                anchors.centerIn: parent
-                text: MaterialIcons.mdi_check
-                color: "#fff"
-                opacity: control.checked? 1 : 0
-                scale: control.checked? 1 : 2
+            Rectangle {
+                height: parent.height - 4
+                anchors.verticalCenter: parent.verticalCenter
+                x: control.checked? (control.LayoutMirroring.enabled? 2 : parent.width - width - 2) : (control.LayoutMirroring.enabled? parent.width - width - 2 : 2)
+                width: height
+                radius: height / 2
+                color: control.Style.backgroundColor
 
                 Behavior on opacity {
                     NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
                 }
-                Behavior on scale {
-                    NumberAnimation { easing.type: Easing.OutBack; duration: 200 }
+
+                Behavior on x {
+                    NumberAnimation { easing.type: Easing.OutCubic; duration: 200 }
                 }
             }
         }

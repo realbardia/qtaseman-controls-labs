@@ -1,9 +1,10 @@
 import QtQuick 2.0
 import AsemanQml.Test.Controls.Core 3.0
 
-Scene {
+Control {
     id: dis
     stylePath: "styles/simple/HeaderStyle.qml"
+    focusableUsingKeyboard: false
 
     property alias scene: scene
     default property alias items: scene.data

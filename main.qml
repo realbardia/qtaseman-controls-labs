@@ -16,6 +16,7 @@ Window {
     }
 
     Page {
+        id: page
         anchors.fill: parent
         title: "Test"
 
@@ -33,6 +34,11 @@ Window {
         Column {
             anchors.centerIn: parent
 
+            Switch {
+                id: switchBtn
+                text: "Test Switch"
+            }
+
             CheckBox {
                 id: check
                 text: "Test check"
@@ -43,7 +49,17 @@ Window {
                 highlighted: true
                 icon: MaterialIcons.mdi_dialpad
                 text: "Test"
-                onClicked: win.Style.highlightColor = "#0d80ec"
+                onClicked: page.Style.highlightColor = "#0d80ec"
+            }
+
+            ItemDelegate {
+                width: 200
+                onClicked: page.Style.highlightColor = "#a00"
+
+                Label {
+                    anchors.centerIn: parent
+                    text: "It's test"
+                }
             }
         }
     }

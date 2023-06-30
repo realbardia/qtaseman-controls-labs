@@ -17,5 +17,13 @@
         <file>Footer.qml</file>
         <file>CheckBox.qml</file>
         <file>styles/simple/CheckBoxStyle.qml</file>
+        <file>Switch.qml</file>
+        <file>styles/simple/SwitchStyle.qml</file>
+        <file>CheckBoxDelegate.qml</file>
+        <file>SwitchDelegate.qml</file>
+        <file>styles/simple/SwitchDelegateStyle.qml</file>
+        <file>styles/simple/CheckBoxDelegateStyle.qml</file>
+        <file>ItemDelegate.qml</file>
+        <file>styles/simple/ItemDelegateStyle.qml</file>
     </qresource>
 </RCC>
