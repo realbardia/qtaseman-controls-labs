@@ -25,5 +25,9 @@
         <file>styles/simple/CheckBoxDelegateStyle.qml</file>
         <file>ItemDelegate.qml</file>
         <file>styles/simple/ItemDelegateStyle.qml</file>
+        <file>TextField.qml</file>
+        <file>styles/simple/TextFieldStyle.qml</file>
+        <file>TextArea.qml</file>
+        <file>styles/simple/TextAreaStyle.qml</file>
     </qresource>
 </RCC>

@@ -31,6 +31,7 @@ Window {
 
         Column {
             anchors.centerIn: parent
+            spacing: 10
 
             Switch {
                 id: switchBtn
@@ -58,6 +59,16 @@ Window {
                     anchors.centerIn: parent
                     text: "It's test"
                 }
+            }
+
+            TextField {
+                width: 200
+                placeholderText: "It's Field"
+            }
+
+            TextArea {
+                width: 200
+                placeholderText: "It's Area 2"
             }
         }
     }
