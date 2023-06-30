@@ -6,14 +6,18 @@
 #include <QStringList>
 #include <QColor>
 
+#include <optional>
+
 class AsemanQuickStyleAttachedProperty : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QStringList generalFontFamilies READ generalFontFamilies WRITE setGeneralFontFamilies NOTIFY generalFontFamiliesChanged)
-    Q_PROPERTY(QColor highlightColor READ highlightColor WRITE setHighlightColor NOTIFY highlightColorChanged)
-    Q_PROPERTY(QColor highlightTextColor READ highlightTextColor WRITE setHighlightTextColor NOTIFY highlightTextColorChanged)
+    Q_PROPERTY(QColor accentColor READ accentColor WRITE setAccentColor NOTIFY accentColorChanged)
+    Q_PROPERTY(QColor accentTextColor READ accentTextColor WRITE setAccentTextColor NOTIFY accentTextColorChanged)
     Q_PROPERTY(QColor foregroundColor READ foregroundColor WRITE setForegroundColor NOTIFY foregroundColorChanged)
     Q_PROPERTY(QColor backgroundColor READ backgroundColor WRITE setBackgroundColor NOTIFY backgroundColorChanged)
+    Q_PROPERTY(QColor primaryColor READ primaryColor WRITE setPrimaryColor NOTIFY primaryColorChanged)
+    Q_PROPERTY(QColor primaryTextColor READ primaryTextColor WRITE setPrimaryTextColor NOTIFY primaryTextColorChanged)
 
 public:
     AsemanQuickStyleAttachedProperty(QObject *parent = nullptr);
@@ -22,11 +26,11 @@ public:
     QStringList generalFontFamilies() const;
     void setGeneralFontFamilies(const QStringList &newGeneralFontFamilies);
 
-    QColor highlightColor() const;
-    void setHighlightColor(const QColor &newHighlightColor);
+    QColor accentColor() const;
+    void setAccentColor(const QColor &newHighlightColor);
 
-    QColor highlightTextColor() const;
-    void setHighlightTextColor(const QColor &newHighlightTextColor);
+    QColor accentTextColor() const;
+    void setAccentTextColor(const QColor &newHighlightTextColor);
 
     QColor foregroundColor() const;
     void setForegroundColor(const QColor &newForegroundColor);
@@ -34,19 +38,29 @@ public:
     QColor backgroundColor() const;
     void setBackgroundColor(const QColor &newBackgroundColor);
 
+    QColor primaryColor() const;
+    void setPrimaryColor(const QColor &newPrimaryColor);
+
+    QColor primaryTextColor() const;
+    void setPrimaryTextColor(const QColor &newPrimaryTextColor);
+
 Q_SIGNALS:
     void generalFontFamiliesChanged();
-    void highlightColorChanged();
-    void highlightTextColorChanged();
+    void accentColorChanged();
+    void accentTextColorChanged();
     void foregroundColorChanged();
     void backgroundColorChanged();
+    void primaryColorChanged();
+    void primaryTextColorChanged();
 
 private:
-    QVariant mGeneralFontFamilies;
-    QVariant mHighlightColor;
-    QVariant mHighlightTextColor;
-    QVariant mForegroundColor;
-    QVariant mBackgroundColor;
+    std::optional<QStringList> mGeneralFontFamilies;
+    std::optional<QColor> mPrimaryColor;
+    std::optional<QColor> mPrimaryTextColor;
+    std::optional<QColor> mAccentColor;
+    std::optional<QColor> mAccentTextColor;
+    std::optional<QColor> mForegroundColor;
+    std::optional<QColor> mBackgroundColor;
 };
 
 class AsemanQuickStyleProperty : public QObject

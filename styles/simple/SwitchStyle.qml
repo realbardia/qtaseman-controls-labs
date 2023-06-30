@@ -103,7 +103,7 @@ AbstractStyle {
                 width: parent.width
                 height: parent.height
                 radius: height/2
-                color:  control.checked? control.Style.highlightColor : control.Style.foregroundColor
+                color:  control.checked? control.Style.accentColor : control.Style.foregroundColor
                 opacity: control.checked? 1 : 0.3
 
                 Behavior on color {

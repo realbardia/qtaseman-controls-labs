@@ -42,7 +42,7 @@ AbstractStyle {
     Rectangle {
         id: background
         anchors.fill: parent
-        color: control.flat? "transparent" : control.highlighted? control.Style.highlightColor : "transparent"
+        color: control.flat? "transparent" : control.highlighted? control.Style.accentColor : "transparent"
         radius: control.radius
 
         Rectangle {
@@ -104,7 +104,7 @@ AbstractStyle {
 
         Root.Label {
             id: mainText
-            color: control.highlighted? control.Style.highlightTextColor : control.Style.foregroundColor
+            color: control.highlighted? control.Style.accentTextColor : control.Style.foregroundColor
             text: control.text
             visible: text.length
         }

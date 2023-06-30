@@ -49,12 +49,12 @@ Window {
                 highlighted: true
                 icon: MaterialIcons.mdi_dialpad
                 text: "Test"
-                onClicked: page.Style.highlightColor = "#0d80ec"
+                onClicked: page.Style.accentColor = "#0d80ec"
             }
 
             ItemDelegate {
                 width: 200
-                onClicked: page.Style.highlightColor = "#a00"
+                onClicked: page.Style.accentColor = "#a00"
 
                 Label {
                     anchors.centerIn: parent

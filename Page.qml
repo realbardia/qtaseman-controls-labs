@@ -13,8 +13,8 @@ Scene {
     }
     stylePath: "styles/simple/PageStyle.qml"
 
-    Style.highlightColor: Palette.highlight
-    Style.highlightTextColor: Palette.highlightText
+    Style.accentColor: Palette.highlight
+    Style.accentTextColor: Palette.highlightText
     Style.foregroundColor: Palette.foreground
     Style.backgroundColor: Palette.background
 

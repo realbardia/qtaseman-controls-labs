@@ -101,7 +101,7 @@ AbstractStyle {
             Rectangle {
                 anchors.fill: parent
                 radius: 6
-                color:  control.checked? control.Style.highlightColor : control.Style.foregroundColor
+                color:  control.checked? control.Style.accentColor : control.Style.foregroundColor
                 opacity: control.checked? 1 : 0.3
 
                 Behavior on color {

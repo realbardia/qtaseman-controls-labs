@@ -6,9 +6,9 @@
 #define ASEMAN_READ_STYLE(PROPERTY) \
     auto parentObject = parent(); \
     auto res = PROPERTY; \
-    while (res.isNull() && parentObject) { \
+    while (!res.has_value() && parentObject) { \
         auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(parentObject, false)); \
-        if (attached && !attached->PROPERTY.isNull()) { \
+        if (attached && attached->PROPERTY.has_value()) { \
             res = attached->PROPERTY; \
             break; \
         } \
@@ -24,7 +24,7 @@
                 callback(c); \
                 continue; \
             } \
-            if (attached->PROPERTY.isNull()) { \
+            if (!attached->PROPERTY.has_value()) { \
                 Q_EMIT attached->SIGNAL_NAME(); \
                 callback(c); \
             } \
@@ -46,7 +46,7 @@ AsemanQuickStyleAttachedProperty::~AsemanQuickStyleAttachedProperty()
 QStringList AsemanQuickStyleAttachedProperty::generalFontFamilies() const
 {
     ASEMAN_READ_STYLE(mGeneralFontFamilies);
-    return res.toStringList();
+    return res.value_or(QStringList());
 }
 
 void AsemanQuickStyleAttachedProperty::setGeneralFontFamilies(const QStringList &newGeneralFontFamilies)
@@ -59,40 +59,40 @@ void AsemanQuickStyleAttachedProperty::setGeneralFontFamilies(const QStringList 
     Q_EMIT generalFontFamiliesChanged();
 }
 
-QColor AsemanQuickStyleAttachedProperty::highlightColor() const
+QColor AsemanQuickStyleAttachedProperty::accentColor() const
 {
-    ASEMAN_READ_STYLE(mHighlightColor);
-    return res.value<QColor>();
+    ASEMAN_READ_STYLE(mAccentColor);
+    return res.value_or(QColor());
 }
 
-void AsemanQuickStyleAttachedProperty::setHighlightColor(const QColor &newHighlightColor)
+void AsemanQuickStyleAttachedProperty::setAccentColor(const QColor &newHighlightColor)
 {
-    if (mHighlightColor == newHighlightColor)
+    if (mAccentColor == newHighlightColor)
         return;
-    mHighlightColor = newHighlightColor;
-    ASEMAN_WRITE_STYLE(mHighlightColor, highlightColorChanged);
-    Q_EMIT highlightColorChanged();
+    mAccentColor = newHighlightColor;
+    ASEMAN_WRITE_STYLE(mAccentColor, accentColorChanged);
+    Q_EMIT accentColorChanged();
 }
 
-QColor AsemanQuickStyleAttachedProperty::highlightTextColor() const
+QColor AsemanQuickStyleAttachedProperty::accentTextColor() const
 {
-    ASEMAN_READ_STYLE(mHighlightTextColor);
-    return res.value<QColor>();
+    ASEMAN_READ_STYLE(mAccentTextColor);
+    return res.value_or(QColor());
 }
 
-void AsemanQuickStyleAttachedProperty::setHighlightTextColor(const QColor &newHighlightTextColor)
+void AsemanQuickStyleAttachedProperty::setAccentTextColor(const QColor &newHighlightTextColor)
 {
-    if (mHighlightTextColor == newHighlightTextColor)
+    if (mAccentTextColor == newHighlightTextColor)
         return;
-    mHighlightTextColor = newHighlightTextColor;
-    ASEMAN_WRITE_STYLE(mHighlightTextColor, highlightTextColorChanged);
-    Q_EMIT highlightTextColorChanged();
+    mAccentTextColor = newHighlightTextColor;
+    ASEMAN_WRITE_STYLE(mAccentTextColor, accentTextColorChanged);
+    Q_EMIT accentTextColorChanged();
 }
 
 QColor AsemanQuickStyleAttachedProperty::foregroundColor() const
 {
     ASEMAN_READ_STYLE(mForegroundColor);
-    return res.value<QColor>();
+    return res.value_or(QColor());
 }
 
 void AsemanQuickStyleAttachedProperty::setForegroundColor(const QColor &newForegroundColor)
@@ -107,7 +107,7 @@ void AsemanQuickStyleAttachedProperty::setForegroundColor(const QColor &newForeg
 QColor AsemanQuickStyleAttachedProperty::backgroundColor() const
 {
     ASEMAN_READ_STYLE(mBackgroundColor);
-    return res.value<QColor>();
+    return res.value_or(QColor());
 }
 
 void AsemanQuickStyleAttachedProperty::setBackgroundColor(const QColor &newBackgroundColor)
@@ -117,6 +117,36 @@ void AsemanQuickStyleAttachedProperty::setBackgroundColor(const QColor &newBackg
     mBackgroundColor = newBackgroundColor;
     ASEMAN_WRITE_STYLE(mBackgroundColor, backgroundColorChanged);
     Q_EMIT backgroundColorChanged();
+}
+
+QColor AsemanQuickStyleAttachedProperty::primaryColor() const
+{
+    ASEMAN_READ_STYLE(mPrimaryColor);
+    return res.value_or(QColor());
+}
+
+void AsemanQuickStyleAttachedProperty::setPrimaryColor(const QColor &newPrimaryColor)
+{
+    if (mPrimaryColor == newPrimaryColor)
+        return;
+    mPrimaryColor = newPrimaryColor;
+    ASEMAN_WRITE_STYLE(mPrimaryColor, primaryColorChanged);
+    Q_EMIT primaryColorChanged();
+}
+
+QColor AsemanQuickStyleAttachedProperty::primaryTextColor() const
+{
+    ASEMAN_READ_STYLE(mPrimaryTextColor);
+    return res.value_or(QColor());
+}
+
+void AsemanQuickStyleAttachedProperty::setPrimaryTextColor(const QColor &newPrimaryTextColor)
+{
+    if (mPrimaryTextColor == newPrimaryTextColor)
+        return;
+    mPrimaryTextColor = newPrimaryTextColor;
+    ASEMAN_WRITE_STYLE(mPrimaryTextColor, primaryTextColorChanged);
+    Q_EMIT primaryTextColorChanged();
 }
 
 AsemanQuickStyleAttachedProperty *AsemanQuickStyleProperty::qmlAttachedProperties(QObject *object)
