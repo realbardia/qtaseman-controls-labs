@@ -33,5 +33,8 @@
         <file>styles/simple/ProgressBarStyle.qml</file>
         <file>Slider.qml</file>
         <file>styles/simple/SliderStyle.qml</file>
+        <file>Window.qml</file>
+        <file>Dialog.qml</file>
+        <file>Menu.qml</file>
     </qresource>
 </RCC>

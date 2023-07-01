@@ -78,7 +78,7 @@ AbstractStyle {
             scenePressAnim.to = 1;
             scenePressAnim.start();
 
-            control.contextMenuRequest();
+            control.contextMenuRequest(mouseX, mouseY);
         }
     }
 }

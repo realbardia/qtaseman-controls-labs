@@ -1,11 +1,10 @@
 import QtQuick 2.15
-import QtQuick.Window 2.15
 import AsemanQml.Test.Controls 3.0
 import AsemanQml.MaterialIcons 2.0
 
 Window {
     id: win
-    width: 480
+    width: 380
     height: 640
     visible: true
     title: qsTr("Hello World")
@@ -51,7 +50,7 @@ Window {
 
             ItemDelegate {
                 width: 200
-                onClicked: page.Style.accentColor = "#a00"
+                onClicked: test_dialog.open()
 
                 Label {
                     anchors.centerIn: parent
@@ -62,6 +61,23 @@ Window {
             TextField {
                 width: 200
                 placeholderText: "It's Field"
+                onContextMenuRequest: {
+                    test_menu.x = x;
+                    test_menu.y = y;
+                    test_menu.open()
+                }
+
+                Menu {
+                    id: test_menu
+                    width: 180
+                    height: 200
+                    transformOrigin: Item.TopLeft
+
+                    Rectangle {
+                        anchors.fill: parent
+                        radius: 12
+                    }
+                }
             }
 
             TextArea {
@@ -78,6 +94,14 @@ Window {
                 value: 30
                 width: 200
             }
+        }
+    }
+
+    Dialog {
+        id: test_dialog
+        Item {
+            width: 300
+            height: 300
         }
     }
 }

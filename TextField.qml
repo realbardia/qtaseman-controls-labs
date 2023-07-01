@@ -18,7 +18,7 @@ TextInput {
     color: dis.Style.foregroundColor
 
     property string placeholderText
-    signal contextMenuRequest()
+    signal contextMenuRequest(real x, real y)
 
     Keys.onTabPressed: {
         styledItem.focusNextItem()
