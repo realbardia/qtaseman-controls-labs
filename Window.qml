@@ -18,6 +18,8 @@ QtWindow.Window {
 
     onCloseRequest: if(backController) AsemanApp.back()
 
+    Style.stylesSearchPath: [":/styles/"]
+    Style.styleName: "simple"
     Style.primaryColor: Palette.background
     Style.primaryTextColor: Palette.foreground
     Style.accentColor: Palette.accent

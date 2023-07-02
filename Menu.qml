@@ -2,11 +2,12 @@ import QtQuick 2.15
 import AsemanQml.Base 2.0
 import AsemanQml.Viewport 2.0
 import AsemanQml.Test.Controls.Core 3.0
+import AsemanQml.Test.Controls 3.0
 
 Item {
     id: dis
 
-    property url stylePath: "styles/simple/MenuStyle.qml"
+    property string styleFileName: "MenuStyle.qml"
 
     default property Component delegate
     property bool opened
@@ -18,10 +19,10 @@ Item {
         if (!opened)
             return;
 
-        prv.scene = Viewport.viewport.append(sceneItem, {}, stylePath)
+        prv.scene = Viewport.viewport.append(sceneItem, {}, dis.Style.styleUrl + '/' + styleFileName)
     }
 
-    onStylePathChanged: {
+    onStyleFileNameChanged: {
         if (opened) {
             close();
             open();

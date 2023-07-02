@@ -3,7 +3,7 @@ import AsemanQml.Test.Controls.Core 3.0
 
 Control {
     id: dis
-    stylePath: "styles/simple/ProgressBarStyle.qml"
+    styleFileName: "ProgressBarStyle.qml"
     focusableUsingKeyboard: false
 
     property real from: 0

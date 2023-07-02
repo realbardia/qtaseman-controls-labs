@@ -13,7 +13,7 @@ Text {
 
     StyledItem {
         id: styledItem
-        stylePath: "styles/simple/LabelStyle.qml"
+        styleFileName: "LabelStyle.qml"
         sourceItem: dis
     }
 }

@@ -11,7 +11,7 @@ Scene {
         if (footer) res[res.length] = footer;
         return res;
     }
-    stylePath: "styles/simple/PageStyle.qml"
+    styleFileName: "PageStyle.qml"
 
     property string title
     property Item header

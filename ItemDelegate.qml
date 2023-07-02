@@ -3,7 +3,7 @@ import AsemanQml.Test.Controls.Core 3.0
 
 Control {
     id: dis
-    stylePath: "styles/simple/ItemDelegateStyle.qml"
+    styleFileName: "ItemDelegateStyle.qml"
     data: [marea, scene]
 
     property alias scene: scene

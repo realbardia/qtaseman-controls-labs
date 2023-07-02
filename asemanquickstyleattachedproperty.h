@@ -20,6 +20,9 @@ class AsemanQuickStyleAttachedProperty : public QObject
     Q_PROPERTY(QColor primaryTextColor READ primaryTextColor WRITE setPrimaryTextColor NOTIFY primaryTextColorChanged)
     Q_PROPERTY(QColor baseColor READ baseColor WRITE setBaseColor NOTIFY baseColorChanged)
     Q_PROPERTY(QColor baseTextColor READ baseTextColor WRITE setBaseTextColor NOTIFY baseTextColorChanged)
+    Q_PROPERTY(QString styleName READ styleName WRITE setStyleName NOTIFY styleNameChanged)
+    Q_PROPERTY(QStringList stylesSearchPath READ stylesSearchPath WRITE setStylesSearchPath NOTIFY stylesSearchPathChanged)
+    Q_PROPERTY(QUrl styleUrl READ styleUrl NOTIFY styleNameChanged)
 
 public:
     AsemanQuickStyleAttachedProperty(QObject *parent = nullptr);
@@ -52,6 +55,15 @@ public:
     QColor baseTextColor() const;
     void setBaseTextColor(const QColor &newBaseTextColor);
 
+    QString styleName() const;
+    void setStyleName(const QString &newStyleName);
+
+    QStringList stylesSearchPath() const;
+    void setStylesSearchPath(const QStringList &newStylesSearchPath);
+
+    static QString getStylePath(const QStringList &searchPaths, const QString &styleName);
+    QUrl styleUrl() const;
+
 Q_SIGNALS:
     void generalFontFamiliesChanged();
     void accentColorChanged();
@@ -62,12 +74,19 @@ Q_SIGNALS:
     void primaryTextColorChanged();
     void baseColorChanged();
     void baseTextColorChanged();
+    void styleNameChanged();
+    void stylesSearchPathChanged();
+    void styleUrlChanged();
 
 protected:
     void invokeAllSignals();
 
 private:
     std::optional<QStringList> mGeneralFontFamilies;
+
+    std::optional<QString> mStyleName;
+    std::optional<QStringList> mStylesSearchPath;
+
     std::optional<QColor> mPrimaryColor;
     std::optional<QColor> mPrimaryTextColor;
     std::optional<QColor> mAccentColor;
@@ -76,6 +95,8 @@ private:
     std::optional<QColor> mBackgroundColor;
     std::optional<QColor> mBaseColor;
     std::optional<QColor> mBaseTextColor;
+
+    static QHash<QString, QHash<QString, QString>> mThemePaths;
 };
 
 class AsemanQuickStyleProperty : public QObject

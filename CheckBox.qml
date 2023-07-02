@@ -3,7 +3,7 @@ import AsemanQml.Test.Controls.Core 3.0
 
 Control {
     id: dis
-    stylePath: "styles/simple/CheckBoxStyle.qml"
+    styleFileName: "CheckBoxStyle.qml"
 
     property string text
     property bool checked

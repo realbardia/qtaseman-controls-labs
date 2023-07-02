@@ -1,11 +1,13 @@
 import QtQuick 2.15
 import AsemanQml.Base 2.0
 import AsemanQml.Viewport 2.0
+import AsemanQml.Test.Controls 3.0
 
 AsemanObject {
+    id: dis
     default property Component delegate
 
-    property url stylePath: "styles/simple/StackPageStyle.qml"
+    property string styleFileName: "StackPageStyle.qml"
     property bool opened
     readonly property Item item: prv.item
 
@@ -15,10 +17,10 @@ AsemanObject {
         if (!opened)
             return;
 
-        prv.item = Viewport.viewport.append(delegate, {}, stylePath)
+        prv.item = Viewport.viewport.append(delegate, {}, dis.Style.styleUrl + '/' + styleFileName)
     }
 
-    onStylePathChanged: {
+    onStyleFileNameChanged: {
         if (opened) {
             close();
             open();

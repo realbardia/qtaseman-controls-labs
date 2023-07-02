@@ -26,7 +26,7 @@ TextInput {
 
     Control {
         id: styledItem
-        stylePath: "styles/simple/TextFieldStyle.qml"
+        styleFileName: "TextFieldStyle.qml"
         sourceItem: dis
         onFocusedInUsingKeyboardChanged: {
             dis.focus = true;

@@ -1,7 +1,10 @@
+#include "asemanquickstyleattachedproperty.h"
 #include "asemanquickstyleditem.h"
 
 #include <QQmlContext>
 #include <QtQml>
+
+QHash<QQmlEngine*, QHash<QString, QQmlComponent*>> AsemanQuickStyledItem::mStyleComponentObjects;
 
 AsemanQuickStyledItem::AsemanQuickStyledItem(QQuickItem *parent)
     : QQuickItem(parent)
@@ -105,28 +108,51 @@ AsemanQuickAbstractStyle *AsemanQuickStyledItem::styleItem() const
     return mStyleItem;
 }
 
-QUrl AsemanQuickStyledItem::stylePath() const
+QString AsemanQuickStyledItem::styleFileName() const
 {
-    return mStylePath;
+    return mStyleFileName;
 }
 
-void AsemanQuickStyledItem::setStylePath(const QUrl &newStylePath)
+void AsemanQuickStyledItem::setStyleFileName(const QString &newStyleFileName)
 {
-    if (mStylePath == newStylePath)
+    if (mStyleFileName == newStyleFileName)
         return;
-    mStylePath = newStylePath;
-    if (!mStylePath.isEmpty())
+    mStyleFileName = newStyleFileName;
+    if (!mStyleFileName.isEmpty())
     {
-        auto engine = qmlEngine(this);
-        if (engine)
+        auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(this, true));
+        auto url = attached->styleUrl();
+        if (!url.isEmpty())
         {
-            auto component = new QQmlComponent(engine, mStylePath, this);
-            if (component->isError())
-                qDebug() << component->errorString().toStdString().c_str();
-            else
-                setStyleComponent(component);
+            auto engine = qmlEngine(this);
+            if (engine)
+            {
+                const auto path = url.toString() + '/' + mStyleFileName;
+
+                auto &component = mStyleComponentObjects[engine][path];
+                if (!component)
+                {
+                    qDebug() << path;
+                    component = new QQmlComponent(engine, QUrl(path), engine);
+                    connect(component, &QObject::destroyed, [engine, path](){
+                        mStyleComponentObjects[engine].remove(path);
+                        if (mStyleComponentObjects.value(engine).isEmpty())
+                            mStyleComponentObjects.remove(engine);
+                    });
+                }
+                if (component->isError())
+                {
+                    qDebug() << component->errorString().toStdString().c_str();
+                    delete component;
+                    component = nullptr;
+                }
+                else
+                    setStyleComponent(component);
+            }
         }
+        else
+            qmlWarning(this) << "Could not find style " << mStyleFileName;
     }
 
-    Q_EMIT stylePathChanged();
+    Q_EMIT styleFileNameChanged();
 }

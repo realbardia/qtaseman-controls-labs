@@ -1,9 +1,10 @@
 import QtQuick 2.0
+import AsemanQml.Test.Controls 3.0
 import AsemanQml.Test.Controls.Core 3.0
 
 Control {
     id: dis
-    stylePath: "styles/simple/ButtonStyle.qml"
+    styleFileName: "ButtonStyle.qml"
 
     property string text
     property string icon

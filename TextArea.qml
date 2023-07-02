@@ -26,7 +26,7 @@ TextEdit {
 
     Control {
         id: styledItem
-        stylePath: "styles/simple/TextAreaStyle.qml"
+        styleFileName: "TextAreaStyle.qml"
         sourceItem: dis
         onFocusedInUsingKeyboardChanged: {
             dis.focus = true;

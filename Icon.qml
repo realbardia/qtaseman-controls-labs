@@ -14,7 +14,7 @@ Text {
 
     StyledItem {
         id: styledItem
-        stylePath: "styles/simple/IconStyle.qml"
+        styleFileName: "IconStyle.qml"
         sourceItem: dis
     }
 }

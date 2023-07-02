@@ -3,7 +3,7 @@ import AsemanQml.Test.Controls.Core 3.0
 
 Control {
     id: dis
-    stylePath: "styles/simple/HeaderStyle.qml"
+    styleFileName: "HeaderStyle.qml"
     focusableUsingKeyboard: false
 
     property alias scene: scene

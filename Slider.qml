@@ -3,7 +3,7 @@ import AsemanQml.Test.Controls.Core 3.0
 
 Control {
     id: dis
-    stylePath: "styles/simple/SliderStyle.qml"
+    styleFileName: "SliderStyle.qml"
 
     property real from: 0
     property real to: 100

@@ -13,7 +13,7 @@ class AsemanQuickStyledItem : public QQuickItem
     Q_OBJECT
     Q_PROPERTY(QQuickItem *sourceItem READ sourceItem WRITE setSourceItem NOTIFY sourceItemChanged)
     Q_PROPERTY(QQmlComponent *styleComponent READ styleComponent WRITE setStyleComponent NOTIFY styleComponentChanged)
-    Q_PROPERTY(QUrl stylePath READ stylePath WRITE setStylePath NOTIFY stylePathChanged)
+    Q_PROPERTY(QString styleFileName READ styleFileName WRITE setStyleFileName NOTIFY styleFileNameChanged)
     Q_PROPERTY(AsemanQuickAbstractStyle *styleItem READ styleItem NOTIFY styleItemChanged)
 
 public:
@@ -23,8 +23,8 @@ public:
     QQmlComponent *styleComponent() const;
     void setStyleComponent(QQmlComponent *newStyleComponent);
 
-    QUrl stylePath() const;
-    void setStylePath(const QUrl &newStylePath);
+    QString styleFileName() const;
+    void setStyleFileName(const QString &newStyleFileName);
 
     AsemanQuickAbstractStyle *styleItem() const;
 
@@ -33,7 +33,7 @@ public:
 
 Q_SIGNALS:
     void styleComponentChanged();
-    void stylePathChanged();
+    void styleFileNameChanged();
     void styleItemChanged();
     void sourceItemChanged();
 
@@ -45,8 +45,10 @@ protected:
 private:
     QPointer<QQuickItem> mSourceItem;
     QPointer<QQmlComponent> mStyleComponent;
-    QUrl mStylePath;
+    QString mStyleFileName;
     AsemanQuickAbstractStyle *mStyleItem = nullptr;
+
+    static QHash<QQmlEngine*, QHash<QString, QQmlComponent*>> mStyleComponentObjects;
 };
 
 #endif // ASEMANQUICKSTYLEDITEM_H
