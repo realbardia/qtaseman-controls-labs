@@ -61,8 +61,10 @@ Q_SIGNALS:
     void primaryColorChanged();
     void primaryTextColorChanged();
     void baseColorChanged();
-
     void baseTextColorChanged();
+
+protected:
+    void invokeAllSignals();
 
 private:
     std::optional<QStringList> mGeneralFontFamilies;

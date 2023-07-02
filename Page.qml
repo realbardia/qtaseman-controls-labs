@@ -13,15 +13,6 @@ Scene {
     }
     stylePath: "styles/simple/PageStyle.qml"
 
-    Style.primaryColor: Palette.background
-    Style.primaryTextColor: Palette.foreground
-    Style.accentColor: Palette.accent
-    Style.accentTextColor: Palette.accentText
-    Style.foregroundColor: Palette.foreground
-    Style.backgroundColor: Palette.background
-    Style.baseColor: Palette.base
-    Style.baseTextColor: Palette.baseText
-
     property string title
     property Item header
     property Item footer

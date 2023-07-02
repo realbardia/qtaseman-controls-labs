@@ -5,7 +5,7 @@ import AsemanQml.Viewport 2.0
 AsemanObject {
     default property Component delegate
 
-    property url stylePath: "styles/simple/DialogStyle.qml"
+    property url stylePath: "styles/simple/StackPageStyle.qml"
     property bool opened
     readonly property Item item: prv.item
 

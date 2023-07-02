@@ -6,11 +6,42 @@ import AsemanQml.Test.Controls.Core 3.0
 Item {
     id: dis
 
+    property url stylePath: "styles/simple/MenuStyle.qml"
+
     default property Component delegate
-    property Item item
+    property bool opened
+    readonly property Item item: prv.item
+
+    onOpenedChanged: {
+        if (prv.scene)
+            prv.scene.ViewportType.open = false;
+        if (!opened)
+            return;
+
+        prv.scene = Viewport.viewport.append(sceneItem, {}, stylePath)
+    }
+
+    onStylePathChanged: {
+        if (opened) {
+            close();
+            open();
+        }
+    }
+
+    QtObject {
+        id: prv
+
+        property Item item
+        property Item scene
+
+        onSceneChanged: if (!scene) opened = false
+    }
 
     function open() {
-        Viewport.viewport.append(sceneItem, {}, "menu")
+        opened = true;
+    }
+    function close() {
+        opened = false;
     }
 
     Component {
@@ -25,7 +56,7 @@ Item {
             }
 
             Component.onCompleted: {
-                dis.item = delegate.createObject(scene);
+                prv.item = delegate.createObject(scene);
                 x = Qt.binding(function(){ return mapListener.result.x + dis.x; });
                 y = Qt.binding(function(){ return mapListener.result.y + dis.y; });
                 width = Qt.binding(function(){ return dis.width; });

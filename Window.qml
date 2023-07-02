@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Window 2.15 as QtWindow
 import AsemanQml.Base 2.0
 import AsemanQml.Viewport 2.0
+import AsemanQml.Test.Controls 3.0
 
 QtWindow.Window {
     id: win
@@ -16,6 +17,15 @@ QtWindow.Window {
     signal closeRequest()
 
     onCloseRequest: if(backController) AsemanApp.back()
+
+    Style.primaryColor: Palette.background
+    Style.primaryTextColor: Palette.foreground
+    Style.accentColor: Palette.accent
+    Style.accentTextColor: Palette.accentText
+    Style.foregroundColor: Palette.foreground
+    Style.backgroundColor: Palette.background
+    Style.baseColor: Palette.base
+    Style.baseTextColor: Palette.baseText
 
     Viewport {
         id: viewport

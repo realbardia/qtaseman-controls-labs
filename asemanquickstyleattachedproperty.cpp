@@ -48,21 +48,30 @@ AsemanQuickStyleAttachedProperty::AsemanQuickStyleAttachedProperty(QObject *pare
                         continue;
                     }
 
-                    Q_EMIT attached->primaryColorChanged();
-                    Q_EMIT attached->primaryTextColorChanged();
-                    Q_EMIT attached->accentColorChanged();
-                    Q_EMIT attached->accentTextColorChanged();
-                    Q_EMIT attached->foregroundColorChanged();
-                    Q_EMIT attached->backgroundColorChanged();
-                    Q_EMIT attached->baseColorChanged();
-                    Q_EMIT attached->baseTextColorChanged();
-                    Q_EMIT attached->generalFontFamiliesChanged();
+                    attached->invokeAllSignals();
                 }
             };
             callback(item);
             Q_EMIT primaryColorChanged();
         });
     }
+
+    invokeAllSignals();
+}
+
+void AsemanQuickStyleAttachedProperty::invokeAllSignals()
+{
+    QMetaObject::invokeMethod(this, [this](){
+        Q_EMIT primaryColorChanged();
+        Q_EMIT primaryTextColorChanged();
+        Q_EMIT accentColorChanged();
+        Q_EMIT accentTextColorChanged();
+        Q_EMIT foregroundColorChanged();
+        Q_EMIT backgroundColorChanged();
+        Q_EMIT baseColorChanged();
+        Q_EMIT baseTextColorChanged();
+        Q_EMIT generalFontFamiliesChanged();
+    }, Qt::QueuedConnection);
 }
 
 AsemanQuickStyleAttachedProperty::~AsemanQuickStyleAttachedProperty()

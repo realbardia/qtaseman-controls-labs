@@ -9,13 +9,13 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
+    Style.primaryColor: "#3f51b5"
+    Style.primaryTextColor: "#fff"
+
     Page {
         id: page
         anchors.fill: parent
         title: "Home"
-
-        Style.primaryColor: "#3f51b5"
-        Style.primaryTextColor: "#fff"
 
         header: Header {
             height: 50
@@ -45,7 +45,7 @@ Window {
                 highlighted: true
                 icon: MaterialIcons.mdi_dialpad
                 text: "Test"
-                onClicked: page.Style.accentColor = "#0d80ec"
+                onClicked: test_stack.open()
             }
 
             ItemDelegate {
@@ -102,6 +102,25 @@ Window {
         Item {
             width: 300
             height: 300
+        }
+    }
+
+    StackPage {
+        id: test_stack
+        Page {
+            id: testStack
+            header: Header {
+                height: 50
+                width: parent.width
+            }
+
+            Button {
+                anchors.centerIn: parent
+                highlighted: true
+                icon: MaterialIcons.mdi_chevron_left
+                text: "Back"
+                onClicked: test_stack.close()
+            }
         }
     }
 }

@@ -36,5 +36,13 @@
         <file>Window.qml</file>
         <file>Dialog.qml</file>
         <file>Menu.qml</file>
+        <file>styles/simple/DialogStyle.qml</file>
+        <file>styles/simple/MenuStyle.qml</file>
+        <file>StackPage.qml</file>
+        <file>styles/simple/StackPageStyle.qml</file>
+        <file>FloatPage.qml</file>
+        <file>styles/simple/FloatPageStyle.qml</file>
+        <file>BottomDrawer.qml</file>
+        <file>styles/simple/BottomDrawerStyle.qml</file>
     </qresource>
 </RCC>
