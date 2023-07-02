@@ -40,6 +40,7 @@ Q_SIGNALS:
 protected:
     void reposItems();
     void reinitImplicitSizes();
+    void reloadStyleTheme();
     void setupStyleItem();
 
 private:

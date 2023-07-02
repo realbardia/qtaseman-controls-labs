@@ -13,6 +13,7 @@ AsemanQuickStyledItem::AsemanQuickStyledItem(QQuickItem *parent)
 
     connect(this, &AsemanQuickStyledItem::widthChanged, this, &AsemanQuickStyledItem::reposItems);
     connect(this, &AsemanQuickStyledItem::heightChanged, this, &AsemanQuickStyledItem::reposItems);
+    connect(this, &QQuickItem::parentChanged, this, &AsemanQuickStyledItem::reloadStyleTheme);
 }
 
 AsemanQuickStyledItem::~AsemanQuickStyledItem()
@@ -51,6 +52,50 @@ void AsemanQuickStyledItem::reinitImplicitSizes()
     {
         setImplicitWidth(mStyleItem->implicitWidth());
         setImplicitHeight(mStyleItem->implicitHeight());
+    }
+}
+
+void AsemanQuickStyledItem::reloadStyleTheme()
+{
+    if (mStyleFileName.isEmpty())
+        return;
+//    if (!parent())
+//        return;
+
+    auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(this, true));
+
+    auto url = attached->styleUrl();
+    const auto path = url.toString() + '/' + mStyleFileName;
+    if (path != mLastStylePath)
+    {
+        mLastStylePath = path;
+        if (!url.isEmpty())
+        {
+            auto engine = qmlEngine(this);
+            if (engine)
+            {
+                auto &component = mStyleComponentObjects[engine][path];
+                if (!component)
+                {
+                    component = new QQmlComponent(engine, QUrl(path), engine);
+                    connect(component, &QObject::destroyed, [engine, path](){
+                        mStyleComponentObjects[engine].remove(path);
+                        if (mStyleComponentObjects.value(engine).isEmpty())
+                            mStyleComponentObjects.remove(engine);
+                    });
+                }
+                if (component->isError())
+                {
+                    qDebug() << component->errorString().toStdString().c_str();
+                    delete component;
+                    component = nullptr;
+                }
+                else
+                    setStyleComponent(component);
+            }
+        }
+        else
+            qmlWarning(this) << "Could not find style " << mStyleFileName;
     }
 }
 
@@ -118,50 +163,6 @@ void AsemanQuickStyledItem::setStyleFileName(const QString &newStyleFileName)
     if (mStyleFileName == newStyleFileName)
         return;
     mStyleFileName = newStyleFileName;
-    if (!mStyleFileName.isEmpty())
-    {
-        auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(this, true));
-
-        auto refreshStyle = [this, attached](){
-            auto url = attached->styleUrl();
-            const auto path = url.toString() + '/' + mStyleFileName;
-            if (path != mLastStylePath)
-            {
-                mLastStylePath = path;
-                if (!url.isEmpty())
-                {
-                    auto engine = qmlEngine(this);
-                    if (engine)
-                    {
-                        auto &component = mStyleComponentObjects[engine][path];
-                        if (!component)
-                        {
-                            component = new QQmlComponent(engine, QUrl(path), engine);
-                            connect(component, &QObject::destroyed, [engine, path](){
-                                mStyleComponentObjects[engine].remove(path);
-                                if (mStyleComponentObjects.value(engine).isEmpty())
-                                    mStyleComponentObjects.remove(engine);
-                            });
-                        }
-                        if (component->isError())
-                        {
-                            qDebug() << component->errorString().toStdString().c_str();
-                            delete component;
-                            component = nullptr;
-                        }
-                        else
-                            setStyleComponent(component);
-                    }
-                }
-                else
-                    qmlWarning(this) << "Could not find style " << mStyleFileName;
-            }
-        };
-
-        connect(attached, &AsemanQuickStyleAttachedProperty::styleNameChanged, this, refreshStyle);
-        connect(attached, &AsemanQuickStyleAttachedProperty::stylesSearchPathChanged, this, refreshStyle);
-        refreshStyle();
-    }
-
+    reloadStyleTheme();
     Q_EMIT styleFileNameChanged();
 }
