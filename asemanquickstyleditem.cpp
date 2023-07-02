@@ -121,37 +121,46 @@ void AsemanQuickStyledItem::setStyleFileName(const QString &newStyleFileName)
     if (!mStyleFileName.isEmpty())
     {
         auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(this, true));
-        auto url = attached->styleUrl();
-        if (!url.isEmpty())
-        {
-            auto engine = qmlEngine(this);
-            if (engine)
-            {
-                const auto path = url.toString() + '/' + mStyleFileName;
 
-                auto &component = mStyleComponentObjects[engine][path];
-                if (!component)
+        auto refreshStyle = [this, attached](){
+            auto url = attached->styleUrl();
+            const auto path = url.toString() + '/' + mStyleFileName;
+            if (path != mLastStylePath)
+            {
+                mLastStylePath = path;
+                if (!url.isEmpty())
                 {
-                    qDebug() << path;
-                    component = new QQmlComponent(engine, QUrl(path), engine);
-                    connect(component, &QObject::destroyed, [engine, path](){
-                        mStyleComponentObjects[engine].remove(path);
-                        if (mStyleComponentObjects.value(engine).isEmpty())
-                            mStyleComponentObjects.remove(engine);
-                    });
-                }
-                if (component->isError())
-                {
-                    qDebug() << component->errorString().toStdString().c_str();
-                    delete component;
-                    component = nullptr;
+                    auto engine = qmlEngine(this);
+                    if (engine)
+                    {
+                        auto &component = mStyleComponentObjects[engine][path];
+                        if (!component)
+                        {
+                            component = new QQmlComponent(engine, QUrl(path), engine);
+                            connect(component, &QObject::destroyed, [engine, path](){
+                                mStyleComponentObjects[engine].remove(path);
+                                if (mStyleComponentObjects.value(engine).isEmpty())
+                                    mStyleComponentObjects.remove(engine);
+                            });
+                        }
+                        if (component->isError())
+                        {
+                            qDebug() << component->errorString().toStdString().c_str();
+                            delete component;
+                            component = nullptr;
+                        }
+                        else
+                            setStyleComponent(component);
+                    }
                 }
                 else
-                    setStyleComponent(component);
+                    qmlWarning(this) << "Could not find style " << mStyleFileName;
             }
-        }
-        else
-            qmlWarning(this) << "Could not find style " << mStyleFileName;
+        };
+
+        connect(attached, &AsemanQuickStyleAttachedProperty::styleNameChanged, this, refreshStyle);
+        connect(attached, &AsemanQuickStyleAttachedProperty::stylesSearchPathChanged, this, refreshStyle);
+        refreshStyle();
     }
 
     Q_EMIT styleFileNameChanged();

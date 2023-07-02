@@ -18,11 +18,9 @@ Window {
         title: "Home"
 
         header: Header {
-            height: 50
             width: parent.width
         }
         footer: Footer {
-            height: 50
             width: parent.width
         }
 

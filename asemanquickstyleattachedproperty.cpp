@@ -40,7 +40,7 @@ AsemanQuickStyleAttachedProperty::AsemanQuickStyleAttachedProperty(QObject *pare
     auto item = qobject_cast<QQuickItem*>(parent);
     if (item)
     {
-        connect(item, &QQuickItem::parentChanged, this, [this, item](){
+        connect(item, &QQuickItem::parentChanged, this, [item](){
             std::function<void(QObject *obj)> callback;
             callback = [&callback](QObject *obj) {
                 for (auto c: obj->children()) {
@@ -125,6 +125,7 @@ QString AsemanQuickStyleAttachedProperty::getStylePath(const QStringList &search
 
 QUrl AsemanQuickStyleAttachedProperty::styleUrl() const
 {
+//    return getStylePath(stylesSearchPath(), styleName());
     return getStylePath({":/styles/"}, "simple");
 }
 

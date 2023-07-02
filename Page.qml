@@ -6,6 +6,7 @@ Scene {
     id: dis
     data: {
         var res = new Array;
+        res[res.length] = styleItem;
         res[res.length] = scene;
         if (header) res[res.length] = header;
         if (footer) res[res.length] = footer;

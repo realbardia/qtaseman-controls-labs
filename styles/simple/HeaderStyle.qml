@@ -4,6 +4,7 @@ import "../.." as Root
 
 AbstractStyle {
     id: dis
+    implicitHeight: 50
 
     Rectangle {
         anchors.fill: parent

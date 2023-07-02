@@ -3,6 +3,7 @@ import AsemanQml.Test.Controls 3.0
 
 AbstractStyle {
     id: dis
+    implicitHeight: 50
 
     Rectangle {
         anchors.fill: parent

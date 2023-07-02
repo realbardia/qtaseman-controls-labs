@@ -47,6 +47,7 @@ private:
     QPointer<QQmlComponent> mStyleComponent;
     QString mStyleFileName;
     AsemanQuickAbstractStyle *mStyleItem = nullptr;
+    QString mLastStylePath;
 
     static QHash<QQmlEngine*, QHash<QString, QQmlComponent*>> mStyleComponentObjects;
 };

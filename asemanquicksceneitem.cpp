@@ -23,14 +23,14 @@ AsemanQuickSceneItem *AsemanQuickSceneItem::findScene(const QQuickItem *item)
     if (!item)
         return nullptr;
 
-    auto parent = item->parentItem();
+    auto parent = item->parent();
     while (parent)
     {
         auto obj = qobject_cast<AsemanQuickSceneItem*>(parent);
         if (obj)
             return obj;
 
-        parent = parent->parentItem();
+        parent = parent->parent();
     }
     return nullptr;
 }
