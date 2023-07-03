@@ -38,14 +38,6 @@ Window {
                 text: "Test check"
             }
 
-            Repeater {
-                model: 2
-
-                CheckBox {
-                    text: "Test check"
-                }
-            }
-
             Button {
                 id: btn
                 highlighted: true

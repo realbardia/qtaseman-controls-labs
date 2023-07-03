@@ -80,6 +80,7 @@ Q_SIGNALS:
 
 protected:
     void invokeAllSignals();
+    static QObject *findParent(const QObject *obj);
 
 private:
     std::optional<QStringList> mGeneralFontFamilies;

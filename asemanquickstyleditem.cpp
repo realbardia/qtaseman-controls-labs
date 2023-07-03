@@ -59,8 +59,8 @@ void AsemanQuickStyledItem::reloadStyleTheme()
 {
     if (mStyleFileName.isEmpty())
         return;
-//    if (!parent())
-//        return;
+    if (!parentItem())
+        return;
 
     auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(this, true));
 

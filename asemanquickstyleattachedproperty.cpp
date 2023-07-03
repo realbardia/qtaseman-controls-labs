@@ -4,7 +4,7 @@
 #include <QDebug>
 
 #define ASEMAN_READ_STYLE(PROPERTY) \
-    auto parentObject = parent(); \
+    auto parentObject = AsemanQuickStyleAttachedProperty::findParent(this); \
     auto res = PROPERTY; \
     while (!res.has_value() && parentObject) { \
         auto attached = qobject_cast<AsemanQuickStyleAttachedProperty*>(qmlAttachedPropertiesObject<AsemanQuickStyleProperty>(parentObject, false)); \
@@ -12,7 +12,7 @@
             res = attached->PROPERTY; \
             break; \
         } \
-        parentObject = parentObject->parent(); \
+        parentObject = AsemanQuickStyleAttachedProperty::findParent(parentObject); \
     }
 
 #define ASEMAN_WRITE_STYLE(PROPERTY, SIGNAL_NAME) \
@@ -30,7 +30,7 @@
             } \
         } \
     }; \
-    callback(parent());
+    callback(AsemanQuickStyleAttachedProperty::findParent(this));
 
 QHash<QString, QHash<QString, QString>> AsemanQuickStyleAttachedProperty::mThemePaths;
 
@@ -80,6 +80,15 @@ void AsemanQuickStyleAttachedProperty::invokeAllSignals()
         Q_EMIT styleNameChanged();
         Q_EMIT stylesSearchPathChanged();
     }, Qt::QueuedConnection);
+}
+
+QObject *AsemanQuickStyleAttachedProperty::findParent(const QObject *obj)
+{
+    auto *item = qobject_cast<const QQuickItem*>(obj);
+    if (item && item->parentItem())
+        return item->parentItem();
+    else
+        return obj->parent();
 }
 
 QStringList AsemanQuickStyleAttachedProperty::stylesSearchPath() const
