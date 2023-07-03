@@ -68,13 +68,8 @@ Window {
                 Menu {
                     id: test_menu
                     width: 180
-                    height: 200
                     transformOrigin: Item.TopLeft
-
-                    Rectangle {
-                        anchors.fill: parent
-                        radius: 12
-                    }
+                    model: 5
                 }
             }
 
@@ -100,6 +95,14 @@ Window {
         width: 300
         height: 300
         Item {
+
+            Button {
+                anchors.centerIn: parent
+                highlighted: true
+                icon: MaterialIcons.mdi_window_close
+                text: "Close"
+                onClicked: test_dialog.close()
+            }
         }
     }
 

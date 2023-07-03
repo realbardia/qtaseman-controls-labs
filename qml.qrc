@@ -35,9 +35,9 @@
         <file>styles/simple/SliderStyle.qml</file>
         <file>Window.qml</file>
         <file>Dialog.qml</file>
-        <file>Menu.qml</file>
+        <file>MenuPopup.qml</file>
         <file>styles/simple/DialogStyle.qml</file>
-        <file>styles/simple/MenuStyle.qml</file>
+        <file>styles/simple/MenuPopupStyle.qml</file>
         <file>StackPage.qml</file>
         <file>styles/simple/StackPageStyle.qml</file>
         <file>FloatPage.qml</file>
@@ -48,5 +48,7 @@
         <file>Private/FreeSizeViewportScene.qml</file>
         <file>Private/FreeGeometryViewportScene.qml</file>
         <file>Private/SnappedViewportScene.qml</file>
+        <file>Menu.qml</file>
+        <file>styles/simple/MenuStyle.qml</file>
     </qresource>
 </RCC>
