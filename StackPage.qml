@@ -1,8 +1,7 @@
 import QtQuick 2.15
 import "Private"
 
-ViewportScene {
+SnappedViewportScene {
     id: dis
     styleFileName: "StackPageStyle.qml"
-    geometryMode: ViewportScene.SnapToView
 }

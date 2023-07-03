@@ -1,8 +1,7 @@
 import QtQuick 2.15
 import "Private"
 
-ViewportScene {
+FreeSizeViewportScene {
     id: dis
     styleFileName: "BottomDrawerStyle.qml"
-    geometryMode: ViewportScene.FreeSizeOnly
 }
