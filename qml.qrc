@@ -44,5 +44,6 @@
         <file>styles/simple/FloatPageStyle.qml</file>
         <file>BottomDrawer.qml</file>
         <file>styles/simple/BottomDrawerStyle.qml</file>
+        <file>Private/ViewportScene.qml</file>
     </qresource>
 </RCC>

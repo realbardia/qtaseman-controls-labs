@@ -97,9 +97,9 @@ Window {
 
     Dialog {
         id: test_dialog
+        width: 300
+        height: 300
         Item {
-            width: 300
-            height: 300
         }
     }
 
