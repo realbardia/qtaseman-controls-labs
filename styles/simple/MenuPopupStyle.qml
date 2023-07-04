@@ -2,6 +2,7 @@ import QtQuick 2.0
 import AsemanQml.GraphicalEffects 2.0
 import AsemanQml.Base 2.0
 import AsemanQml.Viewport 2.0
+import AsemanQml.Test.Controls 3.0
 
 AbstractViewportType {
     id: item
@@ -60,5 +61,12 @@ AbstractViewportType {
             hoverEnabled: true
             onClicked: if (item.touchToCloseIsNull || item.touchToClose) item.open = false
         }
+    }
+
+    Rectangle {
+        parent: item.foregroundScene
+        anchors.fill: item.foregroundItem
+        color: item.Style.baseColor
+        radius: 8
     }
 }

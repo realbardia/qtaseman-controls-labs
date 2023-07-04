@@ -50,5 +50,10 @@
         <file>Private/SnappedViewportScene.qml</file>
         <file>Menu.qml</file>
         <file>styles/simple/MenuStyle.qml</file>
+        <file>MenuButton.qml</file>
+        <file>styles/simple/MenuButtonStyle.qml</file>
+        <file>ComboBox.qml</file>
+        <file>styles/simple/ComboBoxStyle.qml</file>
+        <file>styles/simple/ComboBoxPopupStyle.qml</file>
     </qresource>
 </RCC>

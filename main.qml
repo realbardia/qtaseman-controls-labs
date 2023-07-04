@@ -46,6 +46,11 @@ Window {
                 onClicked: test_stack.open()
             }
 
+            ComboBox {
+                id: combo
+                width: 150
+            }
+
             ItemDelegate {
                 width: 200
                 onClicked: test_dialog.open()
@@ -57,6 +62,7 @@ Window {
             }
 
             TextField {
+                id: textField
                 width: 200
                 placeholderText: "It's Field"
                 onContextMenuRequest: {
@@ -69,7 +75,19 @@ Window {
                     id: test_menu
                     width: 180
                     transformOrigin: Item.TopLeft
-                    model: 5
+
+                    MenuButton {
+                        text: "Copy"
+                        onClicked: textField.copy()
+                    }
+                    MenuButton {
+                        text: "Cut"
+                        onClicked: textField.cut()
+                    }
+                    MenuButton {
+                        text: "Paste"
+                        onClicked: textField.paste()
+                    }
                 }
             }
 

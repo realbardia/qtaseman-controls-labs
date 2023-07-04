@@ -4,7 +4,7 @@ import AsemanQml.Viewport 2.0
 import AsemanQml.Test.Controls.Core 3.0
 import AsemanQml.Test.Controls 3.0
 
-AsemanObject {
+Item {
     id: dis
 
     property string styleFileName
@@ -15,14 +15,14 @@ AsemanObject {
 
     property bool opened: false
 
-    property real x
-    property real y
-    property real width
-    property real height
+//    property real x
+//    property real y
+//    property real width
+//    property real height
+//    property int transformOrigin: Item.TopLeft
 
     property real gestureWidth: -1
     property real maximumWidth: 0
-    property int transformOrigin: Item.TopLeft
     property bool touchToClose: true
     property bool blockBack: false
 
