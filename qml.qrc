@@ -55,5 +55,9 @@
         <file>ComboBox.qml</file>
         <file>styles/simple/ComboBoxStyle.qml</file>
         <file>styles/simple/ComboBoxPopupStyle.qml</file>
+        <file>ComboBoxDelegate.qml</file>
+        <file>styles/simple/ComboBoxDelegateStyle.qml</file>
+        <file>RowLayout.qml</file>
+        <file>ColumnLayout.qml</file>
     </qresource>
 </RCC>

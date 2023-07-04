@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import AsemanQml.Test.Controls 3.0
 import AsemanQml.GraphicalEffects 2.0
-import AsemanQml.MaterialIcons 2.0
 import "../.." as Root
 
 AbstractStyle {
@@ -47,21 +46,14 @@ AbstractStyle {
 
         Rectangle {
             anchors.fill: parent
+            anchors.margins: 4
             radius: control.radius
         }
     }
 
     Rectangle {
         anchors.fill: background
-        color: "transparent"
-        radius: control.radius
-        opacity: control.focusedInUsingKeyboard? 0.5 : 0.1
-        border.width: 1
-        border.color: control.focusedInUsingKeyboard? control.Style.accentColor : control.Style.foregroundColor
-    }
-
-    Rectangle {
-        anchors.fill: background
+        anchors.margins: 4
         opacity: control.pressed || control.focusedInUsingKeyboard || control.hovered? 0.1 : 0
         color: control.Style.foregroundColor
         radius: control.radius
@@ -94,9 +86,7 @@ AbstractStyle {
 
     Row {
         id: contentRow
-        anchors.left: parent.left
-        anchors.leftMargin: 20
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
         spacing: 4
         scale: {
             if (!control.pressed)
@@ -113,17 +103,10 @@ AbstractStyle {
 
         Root.Label {
             id: mainText
-            color: control.Style.foregroundColor
-            text: control.displayText
+            color: control.highlighted? control.Style.accentTextColor : control.Style.foregroundColor
+            text: control.text
             visible: text.length
+            font.bold: control.selected
         }
-    }
-
-    Root.Icon {
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 10
-        text: MaterialIcons.mdi_menu_down
-        font.pixelSize: 20
     }
 }

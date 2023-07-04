@@ -24,9 +24,8 @@ Window {
             width: parent.width
         }
 
-        Column {
+        ColumnLayout {
             anchors.centerIn: parent
-            spacing: 10
 
             Switch {
                 id: switchBtn
@@ -48,7 +47,9 @@ Window {
 
             ComboBox {
                 id: combo
-                width: 150
+                width: 100
+                model: 10
+                popup.width: 140
             }
 
             ItemDelegate {
