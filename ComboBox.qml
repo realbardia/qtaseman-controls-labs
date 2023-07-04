@@ -53,7 +53,7 @@ Control {
     MenuPopup {
         id: popup
         width: dis.width
-        height: 200
+        height: item? Math.min(item.contentHeight, 200) : 200
         x: dis.width/2 - width/2
         transformOrigin: Item.Top
         styleFileName: "ComboBoxPopupStyle.qml"

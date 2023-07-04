@@ -48,7 +48,14 @@ Window {
             ComboBox {
                 id: combo
                 width: 100
-                model: 10
+                textRole: "text"
+                model: ListModel {
+                    ListElement { text: "Test" }
+                    ListElement { text: "Lorem" }
+                    ListElement { text: "Ipsum" }
+                    ListElement { text: "Hello" }
+                }
+
                 popup.width: 140
             }
 
