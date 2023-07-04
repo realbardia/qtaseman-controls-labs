@@ -141,6 +141,10 @@ QList<AsemanQuickControlItem *> AsemanQuickControlItem::findAllControls(const QQ
 
     for (auto obj: item->childItems())
     {
+        auto scene = qobject_cast<AsemanQuickSceneItem*>(obj);
+        if (scene)
+            continue;
+
         auto child = qobject_cast<AsemanQuickControlItem*>(obj);
         if (child && (!focusablesOnly || child->mFocusableUsingKeyboard))
             res << child;

@@ -37,6 +37,10 @@ Window {
                 text: "Test check"
             }
 
+            RadioButton {
+                text: "Radio 1"
+            }
+
             Button {
                 id: btn
                 highlighted: true

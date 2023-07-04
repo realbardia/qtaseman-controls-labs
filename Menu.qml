@@ -5,7 +5,7 @@ MenuPopup {
     id: dis
     height: mainColumn.height
     styleFileName: "MenuStyle.qml"
-    delegate: Scene {
+    delegate: Item {
         id: listv
 
         Component.onCompleted: {
@@ -22,25 +22,31 @@ MenuPopup {
     default property alias sceneData: mainColumn.data
 
     data: [
-        Column {
-            id: mainColumn
-            width: dis.item? dis.item.width : 200
+        Scene {
             parent: dis.item? dis.item : dis
             visible: dis.item? true : false
-            Repeater {
-                model: dis.model
-                delegate: Item {
-                    width: mainColumn.width
-                    height: 46
+            width: mainColumn.width
+            height: mainColumn.height
 
-                    ItemDelegate {
-                        anchors.fill: parent
-                        anchors.margins: 4
-                        onClicked: dis.close()
+            Column {
+                id: mainColumn
+                width: dis.item? dis.item.width : 200
 
-                        Label {
-                            anchors.centerIn: parent
-                            text: "Test " + model.index
+                Repeater {
+                    model: dis.model
+                    delegate: Item {
+                        width: mainColumn.width
+                        height: 46
+
+                        ItemDelegate {
+                            anchors.fill: parent
+                            anchors.margins: 4
+                            onClicked: dis.close()
+
+                            Label {
+                                anchors.centerIn: parent
+                                text: "Test " + model.index
+                            }
                         }
                     }
                 }

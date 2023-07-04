@@ -59,5 +59,7 @@
         <file>styles/simple/ComboBoxDelegateStyle.qml</file>
         <file>RowLayout.qml</file>
         <file>ColumnLayout.qml</file>
+        <file>RadioButton.qml</file>
+        <file>styles/simple/RadioButtonStyle.qml</file>
     </qresource>
 </RCC>
