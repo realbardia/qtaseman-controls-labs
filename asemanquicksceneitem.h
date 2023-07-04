@@ -32,8 +32,18 @@ protected:
     virtual void touchUngrabEvent() override;
     virtual void wheelEvent(QWheelEvent *event) override;
 
+    static QObject *findParent(const QObject *obj);
+    void checkAndCaptureFocus();
+
 private:
     QFont mFont;
+
+    struct PreviousFocus {
+        AsemanQuickSceneItem *scene = nullptr;
+        QQuickItem *item = nullptr;
+    };
+
+    PreviousFocus mPreviousFocused;
 };
 
 #endif // ASEMANQUICKSCENEITEM_H
