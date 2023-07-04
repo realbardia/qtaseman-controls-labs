@@ -37,8 +37,16 @@ Window {
                 text: "Test check"
             }
 
-            RadioButton {
-                text: "Radio 1"
+            RadioButtonGroup {
+                id: radioGroup
+            }
+
+            Repeater {
+                model: 3
+                RadioButton {
+                    ButtonGroup.group: radioGroup
+                    text: "Radio " + (model.index + 1)
+                }
             }
 
             Button {

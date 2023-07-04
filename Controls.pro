@@ -12,6 +12,8 @@ SOURCES += \
         asemanquickboxsize.cpp \
         asemanquickcontrolitem.cpp \
         asemanquickmainpalette.cpp \
+        asemanquickradiobuttoncontrol.cpp \
+        asemanquickradiobuttongroup.cpp \
         asemanquicksceneitem.cpp \
         asemanquickstyleattachedproperty.cpp \
         asemanquickstyleditem.cpp \
@@ -36,6 +38,8 @@ HEADERS += \
     asemanquickboxsize.h \
     asemanquickcontrolitem.h \
     asemanquickmainpalette.h \
+    asemanquickradiobuttoncontrol.h \
+    asemanquickradiobuttongroup.h \
     asemanquicksceneitem.h \
     asemanquickstyleattachedproperty.h \
     asemanquickstyleditem.h

@@ -1,12 +1,11 @@
 import QtQuick 2.0
 import AsemanQml.Test.Controls.Core 3.0
 
-Control {
+RadioControl {
     id: dis
     styleFileName: "RadioButtonStyle.qml"
 
     property string text
-    property bool checked
 
     property alias pressedX: marea.mouseX
     property alias pressedY: marea.mouseY
