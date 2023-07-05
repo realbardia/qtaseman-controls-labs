@@ -61,5 +61,6 @@
         <file>ColumnLayout.qml</file>
         <file>RadioButton.qml</file>
         <file>styles/simple/RadioButtonStyle.qml</file>
+        <file>SwipeView.qml</file>
     </qresource>
 </RCC>

@@ -24,106 +24,129 @@ Window {
             width: parent.width
         }
 
-        ColumnLayout {
-            anchors.centerIn: parent
+        SwipeView {
+            id: swipe
+            anchors.fill: parent
 
-            Switch {
-                id: switchBtn
-                text: "Test Switch"
-            }
-
-            CheckBox {
-                id: check
-                text: "Test check"
-            }
-
-            RadioButtonGroup {
-                id: radioGroup
-            }
-
-            Repeater {
-                model: 3
-                RadioButton {
-                    ButtonGroup.group: radioGroup
-                    text: "Radio " + (model.index + 1)
-                }
-            }
-
-            Button {
-                id: btn
-                highlighted: true
-                icon: MaterialIcons.mdi_dialpad
-                text: "Test"
-                onClicked: test_stack.open()
-            }
-
-            ComboBox {
-                id: combo
-                width: 100
-                textRole: "text"
-                model: ListModel {
-                    ListElement { text: "Test" }
-                    ListElement { text: "Lorem" }
-                    ListElement { text: "Ipsum" }
-                    ListElement { text: "Hello" }
-                }
-
-                popup.width: 140
-            }
-
-            ItemDelegate {
-                width: 200
-                onClicked: test_dialog.open()
-
-                Label {
+            Item {
+                ColumnLayout {
                     anchors.centerIn: parent
-                    text: "It's test"
+
+                    Switch {
+                        id: switchBtn
+                        text: "Test Switch"
+                    }
+
+                    CheckBox {
+                        id: check
+                        text: "Test check"
+                    }
+
+                    RadioButtonGroup {
+                        id: radioGroup
+                    }
+
+                    Repeater {
+                        model: 3
+                        RadioButton {
+                            ButtonGroup.group: radioGroup
+                            text: "Radio " + (model.index + 1)
+                        }
+                    }
+
+                    RowLayout {
+
+                        Button {
+                            id: btn
+                            highlighted: true
+                            icon: MaterialIcons.mdi_dialpad
+                            text: "Test"
+                            onClicked: test_stack.open()
+                        }
+                        Button {
+                            highlighted: true
+                            icon: MaterialIcons.mdi_chevron_right
+                            text: "Next"
+                            onClicked: swipe.currentIndex++
+                        }
+                    }
+
+                    ComboBox {
+                        id: combo
+                        width: 100
+                        textRole: "text"
+                        model: ListModel {
+                            ListElement { text: "Test" }
+                            ListElement { text: "Lorem" }
+                            ListElement { text: "Ipsum" }
+                            ListElement { text: "Hello" }
+                        }
+
+                        popup.width: 140
+                    }
+
+                    ItemDelegate {
+                        width: 200
+                        onClicked: test_dialog.open()
+
+                        Label {
+                            anchors.centerIn: parent
+                            text: "It's test"
+                        }
+                    }
+
+                    TextField {
+                        id: textField
+                        width: 200
+                        placeholderText: "It's Field"
+                        onContextMenuRequest: {
+                            test_menu.x = x;
+                            test_menu.y = y;
+                            test_menu.open()
+                        }
+
+                        Menu {
+                            id: test_menu
+                            width: 180
+                            transformOrigin: Item.TopLeft
+
+                            MenuButton {
+                                text: "Copy"
+                                onClicked: textField.copy()
+                            }
+                            MenuButton {
+                                text: "Cut"
+                                onClicked: textField.cut()
+                            }
+                            MenuButton {
+                                text: "Paste"
+                                onClicked: textField.paste()
+                            }
+                        }
+                    }
+
+                    TextArea {
+                        width: 200
+                        placeholderText: "It's Area 2"
+                    }
+
+                    ProgressBar {
+                        value: 30
+                        width: 200
+                    }
+
+                    Slider {
+                        value: 30
+                        width: 200
+                    }
                 }
             }
 
-            TextField {
-                id: textField
-                width: 200
-                placeholderText: "It's Field"
-                onContextMenuRequest: {
-                    test_menu.x = x;
-                    test_menu.y = y;
-                    test_menu.open()
-                }
+            Item {
 
-                Menu {
-                    id: test_menu
-                    width: 180
-                    transformOrigin: Item.TopLeft
-
-                    MenuButton {
-                        text: "Copy"
-                        onClicked: textField.copy()
-                    }
-                    MenuButton {
-                        text: "Cut"
-                        onClicked: textField.cut()
-                    }
-                    MenuButton {
-                        text: "Paste"
-                        onClicked: textField.paste()
-                    }
-                }
             }
+            Item {
 
-            TextArea {
-                width: 200
-                placeholderText: "It's Area 2"
-            }
-
-            ProgressBar {
-                value: 30
-                width: 200
-            }
-
-            Slider {
-                value: 30
-                width: 200
             }
         }
     }
