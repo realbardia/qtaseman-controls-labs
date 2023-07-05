@@ -68,5 +68,7 @@
         <file>TabButton.qml</file>
         <file>styles/simple/TabButtonStyle.qml</file>
         <file>styles/simple/FastDropShadow.qml</file>
+        <file>FooterButton.qml</file>
+        <file>styles/simple/FooterButtonStyle.qml</file>
     </qresource>
 </RCC>

@@ -34,11 +34,12 @@ AbstractStyle {
             }
             return res;
         }
-        delegate: Scene {
+        delegate: Control {
             id: item
             width: listv.width
             height: listv.height
             clip: true
+            focusableUsingKeyboard: false
 
             Component.onCompleted: {
                 modelData.parent = item;

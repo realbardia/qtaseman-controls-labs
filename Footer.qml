@@ -4,17 +4,15 @@ import AsemanQml.Test.Controls.Core 3.0
 Control {
     id: dis
     styleFileName: "FooterStyle.qml"
+    data: [listv, sceneItem]
     focusableUsingKeyboard: false
 
-    property alias scene: scene
-    default property alias items: scene.data
+    default property alias list: sceneItem.data
+    property int currentIndex
+    property bool interactive: true
 
     Item {
-        id: scene
+        id: sceneItem
         anchors.fill: parent
-        anchors.topMargin: dis.styleItem.padding.top
-        anchors.bottomMargin: dis.styleItem.padding.bottom
-        anchors.leftMargin: dis.styleItem.padding.left
-        anchors.rightMargin: dis.styleItem.padding.right
     }
 }

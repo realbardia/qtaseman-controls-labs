@@ -21,14 +21,29 @@ Window {
             width: parent.width
         }
         footer: Footer {
+            id: footerItem
             width: parent.width
+            onCurrentIndexChanged: swipe.currentIndex = currentIndex
+
+            FooterButton {
+                icon: MaterialIcons.mdi_home
+                text: "Home"
+            }
+            FooterButton {
+                icon: MaterialIcons.mdi_magnify
+                text: "Search"
+            }
+            FooterButton {
+                icon: MaterialIcons.mdi_settings
+                text: "Settings"
+            }
         }
 
         TabBar {
             id: tabBar
             anchors.left: parent.left
             anchors.right: parent.right
-            onCurrentIndexChanged: swipe.currentIndex = currentIndex
+            onCurrentIndexChanged: footerItem.currentIndex = currentIndex
 
             TabButton {
                 text: "Tab 1"
@@ -47,6 +62,7 @@ Window {
             anchors.right: parent.right
             anchors.top: tabBar.bottom
             anchors.bottom: parent.bottom
+            interactive: false
             onCurrentIndexChanged: tabBar.currentIndex = currentIndex
 
             Item {

@@ -46,21 +46,13 @@ AbstractStyle {
 
         Rectangle {
             anchors.fill: parent
-            anchors.margins: 7
-            anchors.leftMargin: 1
-            anchors.rightMargin: 1
-            radius: control.radius
         }
     }
 
     Rectangle {
         anchors.fill: background
-        anchors.leftMargin: 1
-        anchors.rightMargin: 1
-        anchors.margins: 7
         opacity: control.pressed || control.focusedInUsingKeyboard || control.hovered? 0.05 : 0
         color: control.Style.foregroundColor
-        radius: control.radius
     }
 
     Item {
@@ -88,17 +80,18 @@ AbstractStyle {
         source: highlightScene
     }
 
-    Row {
+    Column {
         id: contentRow
         anchors.centerIn: parent
         spacing: 4
         scale: {
+            var value = 0.8;
             if (!control.pressed)
-                return 1;
+                return value;
 
             let m = Math.max(width, height);
             var res = (m-4) / m;
-            return Math.max(res, 0.95);
+            return Math.max(res, 0.95) * value;
         }
 
         Behavior on scale {
@@ -106,7 +99,7 @@ AbstractStyle {
         }
 
         Root.Icon {
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
             color: mainText.color
             font.pixelSize: control.iconPixelSize
             text: control.icon
@@ -114,9 +107,9 @@ AbstractStyle {
         }
 
         Root.Label {
-            anchors.verticalCenter: parent.verticalCenter
             id: mainText
-            color: control.highlighted? control.Style.accentTextColor : control.Style.foregroundColor
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: control.parent.ListView.isCurrentItem? control.Style.accentColor : control.Style.foregroundColor
             text: control.text
             visible: text.length
         }

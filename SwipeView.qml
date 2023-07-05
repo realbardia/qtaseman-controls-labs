@@ -1,9 +1,10 @@
 import QtQuick 2.15
 import AsemanQml.Test.Controls.Core 3.0
 
-Scene {
+Control {
     id: dis
     styleFileName: "SwipeViewStyle.qml"
+    focusableUsingKeyboard: false
     data: [listv, sceneItem]
 
     default property alias list: sceneItem.data
