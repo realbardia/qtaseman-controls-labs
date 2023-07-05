@@ -188,7 +188,23 @@ Window {
             }
 
             Item {
+                ScrollView {
+                    anchors.fill: parent
 
+                    ListView {
+                        id: listv
+                        model: 50
+                        delegate: Item {
+                            width: listv.width
+                            height: 50
+
+                            Label {
+                                anchors.centerIn: parent
+                                text: model.index
+                            }
+                        }
+                    }
+                }
             }
             Item {
 

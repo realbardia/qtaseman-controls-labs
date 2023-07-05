@@ -9,6 +9,7 @@
 #include "asemanquickabstractstyle.h"
 #include "asemanquickradiobuttoncontrol.h"
 #include "asemanquickradiobuttongroup.h"
+#include "asemanquickscrollviewcore.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<AsemanQuickStyledItem>("AsemanQml.Test.Controls.Core", 3, 0, "StyledItem");
     qmlRegisterType<AsemanQuickAbstractStyle>("AsemanQml.Test.Controls", 3, 0, "AbstractStyle");
     qmlRegisterType<AsemanQuickRadioButtonGroup>("AsemanQml.Test.Controls", 3, 0, "RadioButtonGroup");
+    qmlRegisterType<AsemanQuickScrollViewCore>("AsemanQml.Test.Controls", 3, 0, "ScrollViewCore");
     qmlRegisterUncreatableType<AsemanQuickStyleProperty>("AsemanQml.Test.Controls", 3, 0, "Style", "");
     qmlRegisterUncreatableType<AsemanQuickRadioButtonGroupAttachedCreator>("AsemanQml.Test.Controls", 3, 0, "ButtonGroup", "");
     qmlRegisterUncreatableType<AsemanQuickBoxSize>("AsemanQml.Test.Controls", 3, 0, "BoxSize", "");

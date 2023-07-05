@@ -72,5 +72,9 @@
         <file>styles/simple/FooterButtonStyle.qml</file>
         <file>BusyIndicator.qml</file>
         <file>styles/simple/BusyIndicatorStyle.qml</file>
+        <file>ScrollView.qml</file>
+        <file>ScrollBar.qml</file>
+        <file>styles/simple/ScrollBarStyle.qml</file>
+        <file>styles/simple/ScrollViewStyle.qml</file>
     </qresource>
 </RCC>
