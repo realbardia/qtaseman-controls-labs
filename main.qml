@@ -19,6 +19,14 @@ Window {
 
         header: Header {
             width: parent.width
+
+            BusyIndicator {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.rightMargin: 12
+                running: true
+                Style.foregroundColor: "#fff"
+            }
         }
         footer: Footer {
             id: footerItem

@@ -70,5 +70,7 @@
         <file>styles/simple/FastDropShadow.qml</file>
         <file>FooterButton.qml</file>
         <file>styles/simple/FooterButtonStyle.qml</file>
+        <file>BusyIndicator.qml</file>
+        <file>styles/simple/BusyIndicatorStyle.qml</file>
     </qresource>
 </RCC>

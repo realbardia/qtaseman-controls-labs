@@ -19,5 +19,6 @@ Control {
         anchors.bottomMargin: dis.styleItem.padding.bottom
         anchors.leftMargin: dis.styleItem.padding.left
         anchors.rightMargin: dis.styleItem.padding.right
+        z: 10
     }
 }
