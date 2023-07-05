@@ -5,7 +5,7 @@ import AsemanQml.MaterialIcons 2.0
 Window {
     id: win
     width: 380
-    height: 640
+    height: 700
     visible: true
     title: qsTr("Hello World")
 
@@ -24,9 +24,30 @@ Window {
             width: parent.width
         }
 
+        TabBar {
+            id: tabBar
+            anchors.left: parent.left
+            anchors.right: parent.right
+            onCurrentIndexChanged: swipe.currentIndex = currentIndex
+
+            TabButton {
+                text: "Tab 1"
+            }
+            TabButton {
+                text: "Tab 2"
+            }
+            TabButton {
+                text: "Tab 3"
+            }
+        }
+
         SwipeView {
             id: swipe
-            anchors.fill: parent
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: tabBar.bottom
+            anchors.bottom: parent.bottom
+            onCurrentIndexChanged: tabBar.currentIndex = currentIndex
 
             Item {
                 ColumnLayout {

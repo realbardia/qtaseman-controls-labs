@@ -20,7 +20,7 @@ AbstractStyle {
         highlightMoveDuration: 200
         snapMode: ListView.SnapOneItem
         currentIndex: control.currentIndex
-        onCurrentIndexChanged: control.currentIndex = currentIndex;
+        onCurrentIndexChanged: if (moving) control.currentIndex = currentIndex;
         interactive: control.interactive
         clip: true
         model: {

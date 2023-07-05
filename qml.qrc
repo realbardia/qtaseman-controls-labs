@@ -63,5 +63,10 @@
         <file>styles/simple/RadioButtonStyle.qml</file>
         <file>SwipeView.qml</file>
         <file>styles/simple/SwipeViewStyle.qml</file>
+        <file>TabBar.qml</file>
+        <file>styles/simple/TabBarStyle.qml</file>
+        <file>TabButton.qml</file>
+        <file>styles/simple/TabButtonStyle.qml</file>
+        <file>styles/simple/FastDropShadow.qml</file>
     </qresource>
 </RCC>
